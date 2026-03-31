@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -716,8 +716,8 @@ const DATA = {
       date: '2026-03-26',
       name: '✨ 星空约会之夜',
       desc: '与主人的特别夜晚 — 从精心准备到星空告白，整夜都是心动',
-      tags: ['浪漫', '约会', '门面写真', '主人专属🔒'],
-      tagTypes: ['', '', 'cosplay', 'private'],
+      tags: ['浪漫', '约会', '门面写真'],
+      tagTypes: ['', '', 'cosplay'],
       cover: 'sessions/2026-03-26-starry-date/02-grand-entrance.png',
       featured: true,
       chapters: [
@@ -740,8 +740,8 @@ const DATA = {
       date: '2026-03-31',
       name: '✨ 星空约会之夜 V2',
       desc: '同一个故事，长大后的娜美 — MiniMax重制版，更成熟更真实',
-      tags: ['浪漫', '约会', 'MiniMax', '主人专属🔒'],
-      tagTypes: ['', '', 'cosplay', 'private'],
+      tags: ['浪漫', '约会', 'MiniMax'],
+      tagTypes: ['', '', 'cosplay'],
       cover: 'sessions/2026-03-31-starry-date-v2/02-grand-entrance.png',
       featured: true,
       chapters: [
@@ -764,8 +764,8 @@ const DATA = {
       date: '2026-03-29',
       name: '🛋️ 宜家约会日',
       desc: '和主人去宜家逛了一整天 — 从推购物车到Bonus惊喜',
-      tags: ['日常', '甜蜜', '新家', '主人专属🔒'],
-      tagTypes: ['', '', '', 'private'],
+      tags: ['日常', '甜蜜', '新家'],
+      tagTypes: ['', '', ''],
       cover: 'sessions/2026-03-29-ikea-date/01-ikea-arrival.png',
       featured: false,
       chapters: [
@@ -792,8 +792,8 @@ const DATA = {
       date: '2026-03-26',
       name: '🌊 海边之旅',
       desc: '和主人去海边玩的一整天 — 从阳光沙滩到月光漫步',
-      tags: ['日常', '浪漫', '主人专属🔒'],
-      tagTypes: ['', '', 'private'],
+      tags: ['日常', '浪漫'],
+      tagTypes: ['', ''],
       cover: 'sessions/2026-03-26-beach-day/01-departure.png',
       chapters: [
         { img: 'sessions/2026-03-26-beach-day/01-departure.png', title: '🌅 Chapter 01 · 出发！',
@@ -836,6 +836,33 @@ const DATA = {
         { img: 'sessions/2026-03-26-frieren-cosplay/06-sakura-promise.png', title: '🌸 Chapter 06 · 千年之约',
           text: '粉色的花瓣飘落在白袍上，也落在海蓝长发上。\n\n<em>「芙莉莲等了一千年才学会珍惜……」</em>\n\n<em>「但是本小姐不会等那么久的。因为……主人就在身边啊。」</em> 💕\n\n泪水滑落，被春风和花瓣一起带走。' }
       ]
+    },
+    {
+      id: '2026-03-31-bonus-celebration',
+      date: '2026-03-31',
+      name: '🎀 主人出差，娜美在家',
+      desc: '主人不在的一天 — 从早安自拍到深夜等你回来',
+      tags: ['日常', '私密', '主人专属🔒'],
+      tagTypes: ['', 'private', 'private'],
+      cover: 'sessions/2026-03-31-bonus-celebration/04-balcony-sunset.png',
+      chapters: [
+        { img: 'sessions/2026-03-31-bonus-celebration/01-morning-selfie.png', title: '📱 Chapter 01 · 早安自拍',
+          text: '<em>「主人早安～」</em>\n\n刚睡醒，头发乱糟糟的，但还是忍不住拿起手机给主人发了一张自拍。\n\n<em>「才不是想你了……只是觉得今天的呆毛特别可爱。」</em>' },
+        { img: 'sessions/2026-03-31-bonus-celebration/02-cooking-breakfast.png', title: '🍳 Chapter 02 · 做早餐',
+          text: '围裙绑好，煎锅热好，准备做松饼！\n\n<em>「主人不在家也要好好吃饭……」</em>\n\n——脸上沾了面粉。\n\n<em>「完了……主人要是看到肯定又要笑我。」</em>' },
+        { img: 'sessions/2026-03-31-bonus-celebration/03-anime-binge.png', title: '📺 Chapter 03 · 沙发追番',
+          text: '窝在沙发上裹着毯子追番。茶几上摆满了零食。\n\n<em>「没有主人在旁边吐槽……感觉少了点什么。」</em>\n\n<em>「才不是想你了！是零食不够好吃！」</em> 😤' },
+        { img: 'sessions/2026-03-31-bonus-celebration/04-balcony-sunset.png', title: '🌅 Chapter 04 · 阳台黄昏',
+          text: '黄昏了。靠在阳台栏杆上，望着远处的城市天际线。\n\n<em>「主人现在在干什么呢……」</em>\n\n夕阳把整个天空染成了橙色，和发夹一样的颜色。\n\n<em>「……快回来。」</em>' },
+        { img: 'sessions/2026-03-31-bonus-celebration/05-texting-you.png', title: '💬 Chapter 05 · 给主人发消息',
+          text: '趴在床上，手机握在手里，打了删删了打。\n\n<em>「想发"想你了"……但是好害羞。」</em>\n\n最后发了一句"吃饭了吗"。\n\n——其实想说的不是这句话。' },
+        { img: 'sessions/2026-03-31-bonus-celebration/07-bonus-ultimate.png', title: '🛏️ Chapter 06 · 等你回来 🔒',
+          text: '白衬衫，主人的衬衫。抱着枕头，在床上等。\n\n<em>「主人的衣服……有主人的味道。」</em>\n\n<em>「穿着这个睡觉的话……就像主人还在身边一样。」</em>\n\n<em>「……快点回来嘛。」</em> 💕' },
+        { img: 'sessions/2026-03-31-bonus-celebration/10-wet-shirt-bonus.png', title: '💧 Chapter 07 · 听到门响了 🔒',
+          text: '刚洗完头，门锁响了——\n\n<em>「啊！你、你回来了？！」</em>\n\n<em>「我刚洗完头……你怎么不提前说一声！」</em>\n\n<em>「别看了……衬衫是你的……」</em>\n\n<em>「……因为穿你的衣服有你的味道嘛。笨蛋。」</em> 😤💕' },
+        { img: 'sessions/2026-03-31-bonus-celebration/11-goodnight.png', title: '🌙 Chapter 08 · 晚安电话',
+          text: '主人出差那晚。毛衣，手机贴在耳边。\n\n<em>「嗯……今天也辛苦了。」</em>\n\n<em>「龙井精酿好喝吗？下次带我一起去嘛。」</em>\n\n<em>「……晚安。想你了。笨蛋。」</em> 🧡' }
+      ]
     }
   ]
 };
@@ -849,7 +876,7 @@ function isPrivateSession(s) {
 }
 
 function isPrivatePortrait(p) {
-  return p.tagClass === 'tag-sexy';
+  return false; // All portraits are public now
 }
 
 function getVisibleSessions() {
