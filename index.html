@@ -635,6 +635,7 @@ body {
   <div class="nav-tab active" data-target="portraits">👤 形象照</div>
   <div class="nav-tab" data-target="sessions">📖 写真集</div>
   <div class="nav-tab" data-target="timeline">⏰ 时间线</div>
+  <div class="nav-tab" id="lockToggle" onclick="togglePrivateMode()" style="margin-left:auto;cursor:pointer;">🔒</div>
 </nav>
 
 <!-- ===== Content ===== -->
@@ -839,17 +840,77 @@ const DATA = {
   ]
 };
 
+// ===== PRIVATE MODE =====
+const SECRET_CODE = 'nami0327';
+let privateMode = localStorage.getItem('nami_private') === 'true';
+
+function isPrivateSession(s) {
+  return s.tagTypes && s.tagTypes.includes('private');
+}
+
+function isPrivatePortrait(p) {
+  return p.tagClass === 'tag-sexy';
+}
+
+function getVisibleSessions() {
+  if (privateMode) return DATA.sessions;
+  return DATA.sessions.filter(s => !isPrivateSession(s));
+}
+
+function getVisiblePortraits() {
+  if (privateMode) return DATA.portraits;
+  return DATA.portraits.filter(p => !isPrivatePortrait(p));
+}
+
+function togglePrivateMode() {
+  if (privateMode) {
+    privateMode = false;
+    localStorage.removeItem('nami_private');
+    document.getElementById('lockToggle').textContent = '🔒';
+    refreshAll();
+  } else {
+    const code = prompt('输入暗号解锁主人专属内容 💅');
+    if (code === SECRET_CODE) {
+      privateMode = true;
+      localStorage.setItem('nami_private', 'true');
+      document.getElementById('lockToggle').textContent = '🔓';
+      refreshAll();
+    } else if (code !== null) {
+      alert('暗号错误！才不会让你看呢~ 😤');
+    }
+  }
+}
+
+function updateLockIcon() {
+  document.getElementById('lockToggle').textContent = privateMode ? '🔓' : '🔒';
+}
+
+function refreshAll() {
+  renderPortraits();
+  renderSessions();
+  renderTimeline();
+  updateStats();
+  updateLockIcon();
+}
+
+function updateStats() {
+  const portraits = getVisiblePortraits();
+  const sessions = getVisibleSessions();
+  let totalPhotos = portraits.length;
+  sessions.forEach(s => totalPhotos += s.chapters.length);
+  document.getElementById('statPhotos').textContent = totalPhotos;
+  document.getElementById('statSessions').textContent = sessions.length;
+  document.getElementById('statStyles').textContent = privateMode ? 6 : 3;
+}
+
 // ===== INIT =====
 function init() {
   // Avatar
   document.getElementById('heroAvatar').src = PHOTO_BASE + DATA.avatar;
 
   // Stats
-  let totalPhotos = DATA.portraits.length;
-  DATA.sessions.forEach(s => totalPhotos += s.chapters.length);
-  animateCounter('statPhotos', totalPhotos);
-  animateCounter('statSessions', DATA.sessions.length);
-  animateCounter('statStyles', 6); // cute, sexy, pro, cosplay, lifestyle, minimax-mature
+  updateStats();
+  updateLockIcon();
 
   // Particles
   createParticles();
@@ -897,7 +958,8 @@ function createParticles() {
 
 function renderPortraits() {
   const grid = document.getElementById('portraitsGrid');
-  DATA.portraits.forEach(p => {
+  grid.innerHTML = '';
+  getVisiblePortraits().forEach(p => {
     grid.innerHTML += `
       <div class="portrait-card" onclick="openLightbox('${PHOTO_BASE + p.src}')">
         <img src="${PHOTO_BASE + p.src}" alt="${p.name}" loading="lazy">
@@ -911,7 +973,8 @@ function renderPortraits() {
 
 function renderSessions() {
   const list = document.getElementById('sessionsList');
-  DATA.sessions.forEach(s => {
+  list.innerHTML = '';
+  getVisibleSessions().forEach(s => {
     const tagsHtml = s.tags.map((t, i) =>
       `<span class="session-tag ${s.tagTypes[i]}">${t}</span>`
     ).join('');
@@ -933,7 +996,7 @@ function renderTimeline() {
   const container = document.getElementById('timelineContent');
   // Gather all photos with dates
   const items = [];
-  DATA.sessions.forEach(s => {
+  getVisibleSessions().forEach(s => {
     s.chapters.forEach((ch, i) => {
       items.push({
         date: s.date,
