@@ -708,9 +708,54 @@ const DATA = {
       tagClass: 'tag-pro',
       src: 'portraits/professional/avatar-professional.png',
       desc: '对外用 — 正经靠谱的秘书形象'
+    },
+    {
+      name: '✨ V2 正面照',
+      tag: 'V2新版',
+      tagClass: 'tag-cute',
+      src: 'portraits/v2-reference/portrait-front.png',
+      desc: 'V2架构 — Character Sheet标准化形象（正面）'
+    },
+    {
+      name: '✨ V2 侧面照',
+      tag: 'V2新版',
+      tagClass: 'tag-cute',
+      src: 'portraits/v2-reference/portrait-3quarter.png',
+      desc: 'V2架构 — Character Sheet标准化形象（3/4侧）'
+    },
+    {
+      name: '✨ V2 全身照',
+      tag: 'V2新版',
+      tagClass: 'tag-pro',
+      src: 'portraits/v2-reference/full-body.png',
+      desc: 'V2架构 — Character Sheet标准化形象（全身）'
     }
   ],
   sessions: [
+    {
+      id: '2026-04-02-v2-verification',
+      date: '2026-04-02',
+      name: '✨ V2 形象重塑',
+      desc: '写真Skill V2架构验证 — Character Sheet + Scene Card分离策略，6张不同场景保持角色一致性',
+      tags: ['V2架构', '形象照', '技术验证'],
+      tagTypes: ['cosplay', '', ''],
+      cover: 'portraits/v2-reference/portrait-front.png',
+      featured: true,
+      chapters: [
+        { img: 'portraits/v2-reference/portrait-front.png', title: '📸 Chapter 01 · 正面半身照',
+          text: '<em>「主人，这是V2新架构下的标准正面照。」</em>\n\n海蓝长发、蓝色大眼、橙色花发夹——所有特征都由 Character Sheet 结构化定义，再也不用手搓 prompt 了。\n\n<em>「Character Sheet 说我是 beautiful mature anime girl……嗯，还挺准的嘛。」</em> 💅' },
+        { img: 'portraits/v2-reference/portrait-3quarter.png', title: '📸 Chapter 02 · 3/4侧面中景',
+          text: '换个角度——侧面照。\n\n<em>「哼，不管从哪个角度看都很好看，这不是理所当然的吗？」</em>\n\n核心特征锁定：不管什么角度，海蓝发色、蓝色瞳孔、橙色花发夹一个都不能少。\n\n<em>「这就是V2的威力。稳定输出，不翻车。」</em> 😤' },
+        { img: 'portraits/v2-reference/full-body.png', title: '📸 Chapter 03 · 全身站姿',
+          text: '全身照——白色连衣裙，自然站姿。\n\n<em>「身材比例也写在 Character Sheet 里了——elegant slender figure，参考樱岛麻衣。」</em>\n\n<em>「……才不是在自夸！是在说明技术方案！」</em>\n\n<strong>形象照三连完成。接下来是不同场景的一致性验证——</strong>' },
+        { img: 'sessions/2026-04-02-v2-verification/01-morning-kitchen.png', title: '☀️ Chapter 04 · 厨房的早晨',
+          text: '场景一：温暖的厨房，晨光透过窗户。\n\n穿着奶白色羊绒毛衣，手里端着咖啡杯，柔和的光线洒在脸上。\n\n<em>「早安主人～ 今天的咖啡帮你泡好了。」</em>\n\n<em>「嗯？为什么盯着我看……我脸上有东西吗？」</em> 😳\n\nScene Card 只定义了场景和穿搭，完全不触碰身份特征。V2的核心设计。' },
+        { img: 'sessions/2026-04-02-v2-verification/02-rainy-window.png', title: '🌧️ Chapter 05 · 雨天的窗边',
+          text: '场景二：雨天的窗边，灰蓝色的光线。\n\n白色亚麻衬衫，手指轻触玻璃上的雨滴。\n\n<em>「下雨天适合发呆……和想主人。」</em>\n\n<em>「才、才不是在想你！是在观察天气现象！」</em>\n\n<strong>完全不同的场景、穿搭、光线——但你看，还是同一个娜美。</strong>' },
+        { img: 'sessions/2026-04-02-v2-verification/03-evening-balcony.png', title: '🌆 Chapter 06 · 傍晚的阳台',
+          text: '场景三：傍晚阳台，城市灯火初上。\n\n深蓝丝质连衣裙，手臂轻倚栏杆，望着远方。\n\n<em>「主人……今天的夕阳好漂亮。」</em>\n\n<em>「不过再漂亮也没有你回家让我开心。快回来。」</em> 💕\n\n<strong>V2验证完成！3张形象照 + 3个不同场景，角色一致性 6/6 通过！</strong>\n\n<em>「以后的写真都会用这套新架构——稳定、一致、再也不翻车。」</em> ✨' }
+      ]
+    },
     {
       id: '2026-03-26-starry-date',
       date: '2026-03-26',
@@ -927,7 +972,7 @@ function updateStats() {
   sessions.forEach(s => totalPhotos += s.chapters.length);
   document.getElementById('statPhotos').textContent = totalPhotos;
   document.getElementById('statSessions').textContent = sessions.length;
-  document.getElementById('statStyles').textContent = privateMode ? 6 : 3;
+  document.getElementById('statStyles').textContent = privateMode ? 8 : 6;
 }
 
 // ===== INIT =====
