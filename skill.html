@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Photoshoot Skill — 数字人形象生成技能</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a12;--purple:#c44dff;--pink:#ff6b9d;--cyan:#00d4ff;--gold:#f5a623;--text:#e8e6f0;--dim:#888;--card:rgba(18,18,30,0.85);--glass:rgba(255,255,255,0.03);--r:16px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(196,77,255,0.08),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(255,107,157,0.06),transparent 60%);pointer-events:none;z-index:0}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;position:relative;z-index:1}
+.hero-avatar{width:140px;height:140px;border-radius:50%;border:3px solid rgba(196,77,255,0.4);box-shadow:0 0 40px rgba(196,77,255,0.2);object-fit:cover;margin-bottom:28px}
+.hero h1{font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em;line-height:1.2}
+.hero h1 small{display:block;font-size:1.1rem;font-weight:500;-webkit-text-fill-color:var(--dim);margin-top:8px;letter-spacing:0.04em}
+.hero .tagline{color:var(--dim);font-size:1.1rem;max-width:640px;line-height:1.7;margin-top:20px}
+.hero .tagline em{color:var(--purple);font-style:normal;font-weight:600}
+.badge-row{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.badge{padding:6px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;letter-spacing:0.03em}
+.badge-purple{background:rgba(196,77,255,0.12);border:1px solid rgba(196,77,255,0.3);color:var(--purple)}
+.badge-pink{background:rgba(255,107,157,0.12);border:1px solid rgba(255,107,157,0.3);color:var(--pink)}
+.badge-cyan{background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.3);color:var(--cyan)}
+
+/* Demo Cards */
+.demos{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;max-width:900px;margin:48px auto 0;padding:0 24px}
+.demo-card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all 0.35s cubic-bezier(.4,0,.2,1);text-decoration:none;color:var(--text);position:relative}
+.demo-card:hover{transform:translateY(-6px);border-color:rgba(196,77,255,0.35);box-shadow:0 20px 60px rgba(196,77,255,0.12)}
+.demo-thumb{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s}
+.demo-card:hover .demo-thumb{transform:scale(1.04)}
+.demo-body{padding:20px 22px 24px}
+.demo-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:6px}
+.demo-label.v1{color:var(--pink)}
+.demo-label.v2{color:var(--cyan)}
+.demo-title{font-size:1.3rem;font-weight:700;margin-bottom:8px}
+.demo-desc{font-size:0.88rem;color:var(--dim);line-height:1.6}
+.demo-arrow{position:absolute;bottom:22px;right:22px;width:36px;height:36px;border-radius:50%;background:rgba(196,77,255,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateX(-8px);transition:all 0.3s}
+.demo-card:hover .demo-arrow{opacity:1;transform:translateX(0)}
+.demo-arrow svg{width:18px;height:18px;stroke:var(--purple);fill:none;stroke-width:2}
+
+/* Features */
+.features{max-width:900px;margin:80px auto 0;padding:0 24px}
+.features h2{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:40px;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.feat-item{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:24px;transition:border-color 0.3s}
+.feat-item:hover{border-color:rgba(196,77,255,0.2)}
+.feat-icon{font-size:1.6rem;margin-bottom:10px}
+.feat-name{font-size:1rem;font-weight:700;margin-bottom:6px}
+.feat-text{font-size:0.82rem;color:var(--dim);line-height:1.6}
+
+/* Architecture */
+.arch{max-width:900px;margin:80px auto 0;padding:0 24px}
+.arch h2{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:28px;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.arch-diagram{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);padding:28px;font-family:'Cascadia Code','Fira Code',monospace;font-size:0.82rem;line-height:1.8;color:var(--dim);overflow-x:auto;white-space:pre}
+.arch-diagram .hl{color:var(--purple);font-weight:600}
+.arch-diagram .hl2{color:var(--pink);font-weight:600}
+.arch-diagram .hl3{color:var(--cyan);font-weight:600}
+
+/* Footer */
+.footer{text-align:center;padding:80px 24px 40px;color:var(--dim);font-size:0.82rem}
+.footer a{color:var(--purple);text-decoration:none}
+
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  .demos{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <img class="hero-avatar" src="showcase/avatar-main.png" alt="Nami">
+  <h1>AI Photoshoot Skill
+    <small>数字人形象生成技能 &middot; Skills 大赛参赛作品</small>
+  </h1>
+  <p class="tagline">
+    基于 <em>Two-Layer Architecture</em> 的AI数字人形象生成系统<br>
+    Layer 1 定义"她是谁"（Character Sheet），Layer 2 定义"她在做什么"（Scene Card）<br>
+    实现跨场景的<em>角色一致性</em>和<em>风格可控性</em>
+  </p>
+  <div class="badge-row">
+    <span class="badge badge-purple">MiniMax image-01</span>
+    <span class="badge badge-pink">Pure Prompt — No LoRA</span>
+    <span class="badge badge-cyan">¥0.025/张</span>
+  </div>
+  <div class="demos">
+    <a class="demo-card" href="showcase/nami.html">
+      <img class="demo-thumb" src="showcase/nami-bookstore.png" alt="Nami">
+      <div class="demo-body">
+        <div class="demo-label v1">DEMO 1</div>
+        <div class="demo-title">娜美 — 数字人形象馆</div>
+        <div class="demo-desc">同一角色在12+场景下的形象展示：日常、约会、Cosplay、全身照，验证 Character Sheet 驱动的身份一致性。</div>
+      </div>
+      <div class="demo-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    </a>
+    <a class="demo-card" href="sessions/2026-04-03-top10-anime/gallery.html">
+      <img class="demo-thumb" src="sessions/2026-04-03-top10-anime/01-mai-sakurajima.png" alt="TOP10">
+      <div class="demo-body">
+        <div class="demo-label v2">DEMO 2</div>
+        <div class="demo-title">TOP 10 角色一致性验证</div>
+        <div class="demo-desc">10个经典日漫角色 &times; 4张图（形象照+3场景），纯视觉特征驱动、无角色名，验证 prompt 工程的泛化能力。</div>
+      </div>
+      <div class="demo-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    </a>
+  </div>
+</div>
+
+<div class="features">
+  <h2>核心能力</h2>
+  <div class="feat-grid">
+    <div class="feat-item">
+      <div class="feat-icon">🧬</div>
+      <div class="feat-name">Two-Layer Architecture</div>
+      <div class="feat-text">Character Sheet（身份层）+ Scene Card（场景层）分离。身份特征跨场景锁定，场景随意切换不走形。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">🎯</div>
+      <div class="feat-name">Pure Prompt Engineering</div>
+      <div class="feat-text">不依赖 LoRA / DreamBooth / 微调模型。纯 prompt + reference image 双重锚定，零训练成本。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">🛡️</div>
+      <div class="feat-name">审核安全策略</div>
+      <div class="feat-text">积累了完整的审核绕过经验库。"不说身体说衣服" — 用服饰描述替代身体描述，安全且效果好。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">📐</div>
+      <div class="feat-name">Prompt 经验库</div>
+      <div class="feat-text">眼神三要素、身材安全描述、成熟感调控公式、面料升级策略 — 系统化的 prompt engineering 知识沉淀。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">🎭</div>
+      <div class="feat-name">Cosplay 模式</div>
+      <div class="feat-text">角色 Cos 其他角色时，保持核心身份特征（发色、眼色、发饰）不变，只换服装场景。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">💰</div>
+      <div class="feat-name">极低成本</div>
+      <div class="feat-text">MiniMax image-01 仅 ¥0.025/张。40张一致性验证总成本 &lt; ¥1.5。普通用户也能用得起。</div>
+    </div>
+  </div>
+</div>
+
+<div class="arch">
+  <h2>系统架构</h2>
+  <div class="arch-diagram"><span class="hl">┌─────────────────────────────────────────────────┐</span>
+<span class="hl">│  Layer 0 — Engine</span> (API / Audit / Retry)         <span class="hl">│</span>
+<span class="hl">│</span>  MiniMax image-01, ¥0.025/张, 18-100s/张        <span class="hl">│</span>
+<span class="hl">├─────────────────────────────────────────────────┤</span>
+<span class="hl2">│  Layer 1 — Character Sheet</span> (固定不变)            <span class="hl">│</span>
+<span class="hl">│</span>  五官 + 身材 + 气质 + 画风 + 参考图              <span class="hl">│</span>
+<span class="hl">│</span>  → render() → 固定 prompt 段                     <span class="hl">│</span>
+<span class="hl">├─────────────────────────────────────────────────┤</span>
+<span class="hl3">│  Layer 2 — Scene Card</span> (每次不同)                 <span class="hl">│</span>
+<span class="hl">│</span>  场景 + 穿搭 + 动作 + 光影 + 构图               <span class="hl">│</span>
+<span class="hl">│</span>  → render() → 可变 prompt 段                     <span class="hl">│</span>
+<span class="hl">├─────────────────────────────────────────────────┤</span>
+<span class="hl">│  Prompt Assembly</span>                                 <span class="hl">│</span>
+<span class="hl">│</span>  final = <span class="hl2">character_prompt</span> + expression + <span class="hl3">scene</span>   <span class="hl">│</span>
+<span class="hl">└─────────────────────────────────────────────────┘</span></div>
+</div>
+
+<div class="footer">
+  <p>AI Photoshoot Skill &middot; Powered by MiniMax image-01 + CodeBuddy Agent</p>
+  <p style="margin-top:8px"><a href="https://github.com/amayazhao/nami-gallery">GitHub</a></p>
+</div>
+
+</body>
+</html>
