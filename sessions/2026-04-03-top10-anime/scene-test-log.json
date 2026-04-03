@@ -1,0 +1,323 @@
+{
+  "timestamp": "2026-04-03T13:54:25.536505",
+  "total_time": 591.0553557872772,
+  "ok_count": 25,
+  "fail_count": 5,
+  "cost_cny": 0.625,
+  "scenes": [
+    {
+      "scene_id": "a-cafe",
+      "label": "Cafe Afternoon"
+    },
+    {
+      "scene_id": "b-rain",
+      "label": "Rainy Street"
+    },
+    {
+      "scene_id": "c-rooftop",
+      "label": "Rooftop Sunset"
+    }
+  ],
+  "results": [
+    {
+      "char_id": "01",
+      "char_name": "Mai Sakurajima",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 18.119986295700073,
+      "file": "01-a-cafe.png",
+      "prompt": "beautiful anime girl, with long straight black hair, past shoulders, side-swept bangs, deep purple-blue eyes, calm and intelligent gaze, fair porcelain skin, elegant oval face, refined features, 165cm healthy well-proportioned feminine figure, mature composed young woman, early 20s, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "01",
+      "char_name": "Mai Sakurajima",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 16.859955310821533,
+      "file": "01-b-rain.png",
+      "prompt": "beautiful anime girl, with long straight black hair, past shoulders, side-swept bangs, deep purple-blue eyes, calm and intelligent gaze, fair porcelain skin, elegant oval face, refined features, 165cm healthy well-proportioned feminine figure, mature composed young woman, early 20s, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "01",
+      "char_name": "Mai Sakurajima",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 46.989359855651855,
+      "file": "01-c-rooftop.png",
+      "prompt": "beautiful anime girl, with long straight black hair, past shoulders, side-swept bangs, deep purple-blue eyes, calm and intelligent gaze, fair porcelain skin, elegant oval face, refined features, 165cm healthy well-proportioned feminine figure, mature composed young woman, early 20s, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "02",
+      "char_name": "Asuna Yuuki",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 17.629254579544067,
+      "file": "02-a-cafe.png",
+      "prompt": "beautiful anime girl, with long flowing chestnut-orange hair, reaching waist, with braided side strands, warm hazel-brown eyes, bright and determined, fair warm-toned skin, healthy glow, gentle heart-shaped face, soft features, 168cm healthy well-proportioned feminine figure with soft natural curves, youthful energetic young woman, late teens, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "02",
+      "char_name": "Asuna Yuuki",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 16.987035751342773,
+      "file": "02-b-rain.png",
+      "prompt": "beautiful anime girl, with long flowing chestnut-orange hair, reaching waist, with braided side strands, warm hazel-brown eyes, bright and determined, fair warm-toned skin, healthy glow, gentle heart-shaped face, soft features, 168cm healthy well-proportioned feminine figure with soft natural curves, youthful energetic young woman, late teens, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "02",
+      "char_name": "Asuna Yuuki",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 19.095056295394897,
+      "file": "02-c-rooftop.png",
+      "prompt": "beautiful anime girl, with long flowing chestnut-orange hair, reaching waist, with braided side strands, warm hazel-brown eyes, bright and determined, fair warm-toned skin, healthy glow, gentle heart-shaped face, soft features, 168cm healthy well-proportioned feminine figure with soft natural curves, youthful energetic young woman, late teens, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "03",
+      "char_name": "Violet Evergarden",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 29.406707763671875,
+      "file": "03-a-cafe.png",
+      "prompt": "beautiful anime girl, with golden blonde hair tied in a low ponytail with loose side bangs, blue ribbon, vivid sapphire blue eyes, crystal clear, emotionally deep, porcelain fair skin, flawless, doll-like beautiful face, delicate refined features, 163cm slender graceful figure, young woman with an air of quiet grace, early 20s, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "03",
+      "char_name": "Violet Evergarden",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 28.787500381469727,
+      "file": "03-b-rain.png",
+      "prompt": "beautiful anime girl, with golden blonde hair tied in a low ponytail with loose side bangs, blue ribbon, vivid sapphire blue eyes, crystal clear, emotionally deep, porcelain fair skin, flawless, doll-like beautiful face, delicate refined features, 163cm slender graceful figure, young woman with an air of quiet grace, early 20s, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "03",
+      "char_name": "Violet Evergarden",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 17.102314472198486,
+      "file": "03-c-rooftop.png",
+      "prompt": "beautiful anime girl, with golden blonde hair tied in a low ponytail with loose side bangs, blue ribbon, vivid sapphire blue eyes, crystal clear, emotionally deep, porcelain fair skin, flawless, doll-like beautiful face, delicate refined features, 163cm slender graceful figure, young woman with an air of quiet grace, early 20s, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "04",
+      "char_name": "Zero Two",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 15.94251036643982,
+      "file": "04-a-cafe.png",
+      "prompt": "beautiful anime girl, with long flowing pink hair with twin red horns on the head, bangs framing face, cyan-green eyes with red eyeshadow, sharp seductive gaze, fair skin with a slight warm undertone, sharp attractive face with confident smirk, 170cm healthy well-proportioned feminine figure with soft natural curves, bold confident young woman, early 20s, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "04",
+      "char_name": "Zero Two",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 19.387930154800415,
+      "file": "04-b-rain.png",
+      "prompt": "beautiful anime girl, with long flowing pink hair with twin red horns on the head, bangs framing face, cyan-green eyes with red eyeshadow, sharp seductive gaze, fair skin with a slight warm undertone, sharp attractive face with confident smirk, 170cm healthy well-proportioned feminine figure with soft natural curves, bold confident young woman, early 20s, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "04",
+      "char_name": "Zero Two",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 16.064733743667603,
+      "file": "04-c-rooftop.png",
+      "prompt": "beautiful anime girl, with long flowing pink hair with twin red horns on the head, bangs framing face, cyan-green eyes with red eyeshadow, sharp seductive gaze, fair skin with a slight warm undertone, sharp attractive face with confident smirk, 170cm healthy well-proportioned feminine figure with soft natural curves, bold confident young woman, early 20s, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "05",
+      "char_name": "Rem",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 19.490895986557007,
+      "file": "05-a-cafe.png",
+      "prompt": "beautiful anime girl, with short sky-blue hair covering right eye, with a flower hair ornament on left side, light blue eyes, large and expressive, fair soft skin, delicate, round cute face, youthful soft features, 154cm petite but well-proportioned feminine figure, adorable devoted young woman, late teens, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "05",
+      "char_name": "Rem",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 19.89425563812256,
+      "file": "05-b-rain.png",
+      "prompt": "beautiful anime girl, with short sky-blue hair covering right eye, with a flower hair ornament on left side, light blue eyes, large and expressive, fair soft skin, delicate, round cute face, youthful soft features, 154cm petite but well-proportioned feminine figure, adorable devoted young woman, late teens, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "05",
+      "char_name": "Rem",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 16.161409854888916,
+      "file": "05-c-rooftop.png",
+      "prompt": "beautiful anime girl, with short sky-blue hair covering right eye, with a flower hair ornament on left side, light blue eyes, large and expressive, fair soft skin, delicate, round cute face, youthful soft features, 154cm petite but well-proportioned feminine figure, adorable devoted young woman, late teens, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "06",
+      "char_name": "Mikoto Misaka",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "ERROR-1026",
+      "time": 6.07480788230896,
+      "file": null,
+      "prompt": "beautiful anime girl, with short-medium chestnut brown hair, shoulder length, slightly messy tomboyish style, warm brown eyes, spirited and confident, fair healthy skin with natural flush, youthful energetic face, cute but determined features, 161cm athletic lean figure, fit and energetic, spirited energetic teenage girl, mid teens appearance, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "06",
+      "char_name": "Mikoto Misaka",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 18.93267560005188,
+      "file": "06-b-rain.png",
+      "prompt": "beautiful anime girl, with short-medium chestnut brown hair, shoulder length, slightly messy tomboyish style, warm brown eyes, spirited and confident, fair healthy skin with natural flush, youthful energetic face, cute but determined features, 161cm athletic lean figure, fit and energetic, spirited energetic teenage girl, mid teens appearance, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "06",
+      "char_name": "Mikoto Misaka",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "ERROR-1026",
+      "time": 5.697430610656738,
+      "file": null,
+      "prompt": "beautiful anime girl, with short-medium chestnut brown hair, shoulder length, slightly messy tomboyish style, warm brown eyes, spirited and confident, fair healthy skin with natural flush, youthful energetic face, cute but determined features, 161cm athletic lean figure, fit and energetic, spirited energetic teenage girl, mid teens appearance, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "07",
+      "char_name": "Kurisu Makise",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 18.758443593978882,
+      "file": "07-a-cafe.png",
+      "prompt": "beautiful anime girl, with long auburn-chestnut hair reaching mid-back, slightly wavy, with ahoge (antenna hair), violet-purple eyes, sharp and analytical, fair skin, light complexion, refined intelligent face, sharp beautiful features, 160cm slender graceful figure, brilliant composed young woman, early 20s, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "07",
+      "char_name": "Kurisu Makise",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 16.519346475601196,
+      "file": "07-b-rain.png",
+      "prompt": "beautiful anime girl, with long auburn-chestnut hair reaching mid-back, slightly wavy, with ahoge (antenna hair), violet-purple eyes, sharp and analytical, fair skin, light complexion, refined intelligent face, sharp beautiful features, 160cm slender graceful figure, brilliant composed young woman, early 20s, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "07",
+      "char_name": "Kurisu Makise",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 50.34630274772644,
+      "file": "07-c-rooftop.png",
+      "prompt": "beautiful anime girl, with long auburn-chestnut hair reaching mid-back, slightly wavy, with ahoge (antenna hair), violet-purple eyes, sharp and analytical, fair skin, light complexion, refined intelligent face, sharp beautiful features, 160cm slender graceful figure, brilliant composed young woman, early 20s, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "08",
+      "char_name": "Nezuko Kamado",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "ERROR-1026",
+      "time": 6.736730098724365,
+      "file": null,
+      "prompt": "beautiful anime girl, with long black hair with orange-red gradient tips, worn loose, with pink ribbon, pink eyes, large and innocent, fair skin with soft warm undertone, cute round face, gentle features, 153cm petite delicate figure, gentle innocent young girl, youthful appearance, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "08",
+      "char_name": "Nezuko Kamado",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "ERROR-1026",
+      "time": 4.32093071937561,
+      "file": null,
+      "prompt": "beautiful anime girl, with long black hair with orange-red gradient tips, worn loose, with pink ribbon, pink eyes, large and innocent, fair skin with soft warm undertone, cute round face, gentle features, 153cm petite delicate figure, gentle innocent young girl, youthful appearance, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "08",
+      "char_name": "Nezuko Kamado",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "ERROR-1026",
+      "time": 27.902697563171387,
+      "file": null,
+      "prompt": "beautiful anime girl, with long black hair with orange-red gradient tips, worn loose, with pink ribbon, pink eyes, large and innocent, fair skin with soft warm undertone, cute round face, gentle features, 153cm petite delicate figure, gentle innocent young girl, youthful appearance, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "09",
+      "char_name": "Frieren",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 17.252564191818237,
+      "file": "09-a-cafe.png",
+      "prompt": "beautiful anime girl, with long silver-white hair in twin low ponytails, with green leaves or twigs as natural hair ornaments, deep green eyes, calm ancient wisdom in her gaze, pale porcelain skin, ethereal, delicate elfin face with pointed ears, ageless beauty, 165cm slender graceful elfin figure, ancient elf with youthful appearance, timeless beauty, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "09",
+      "char_name": "Frieren",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 27.083550453186035,
+      "file": "09-b-rain.png",
+      "prompt": "beautiful anime girl, with long silver-white hair in twin low ponytails, with green leaves or twigs as natural hair ornaments, deep green eyes, calm ancient wisdom in her gaze, pale porcelain skin, ethereal, delicate elfin face with pointed ears, ageless beauty, 165cm slender graceful elfin figure, ancient elf with youthful appearance, timeless beauty, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "09",
+      "char_name": "Frieren",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 19.292020320892334,
+      "file": "09-c-rooftop.png",
+      "prompt": "beautiful anime girl, with long silver-white hair in twin low ponytails, with green leaves or twigs as natural hair ornaments, deep green eyes, calm ancient wisdom in her gaze, pale porcelain skin, ethereal, delicate elfin face with pointed ears, ageless beauty, 165cm slender graceful elfin figure, ancient elf with youthful appearance, timeless beauty, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    },
+    {
+      "char_id": "10",
+      "char_name": "Gojo Satoru (Female)",
+      "scene_id": "a-cafe",
+      "scene_label": "Cafe Afternoon",
+      "status": "OK",
+      "time": 16.536540031433105,
+      "file": "10-a-cafe.png",
+      "prompt": "beautiful anime girl, with spiky fluffy snow-white hair, messy stylish short-medium length, stunning brilliant ice-blue eyes, the Six Eyes with infinity pattern visible, fair skin, sharp jawline softened for feminine version, strikingly beautiful androgynous face, sharp confident features, 175cm tall athletic feminine figure, confident powerful young woman, mid 20s, overwhelming charisma, wearing a soft cream knit cardigan over a white t-shirt, relaxed casual style, gentle warm smile, chin resting on one hand, looking at the viewer with soft affectionate eyes, sitting at a window seat in a cozy cafe, warm afternoon sunlight, coffee cup on table, bokeh background, medium close-up shot, anime art style, high quality, detailed, beautiful lighting, warm, relaxed, intimate, natural beauty"
+    },
+    {
+      "char_id": "10",
+      "char_name": "Gojo Satoru (Female)",
+      "scene_id": "b-rain",
+      "scene_label": "Rainy Street",
+      "status": "OK",
+      "time": 15.15881061553955,
+      "file": "10-b-rain.png",
+      "prompt": "beautiful anime girl, with spiky fluffy snow-white hair, messy stylish short-medium length, stunning brilliant ice-blue eyes, the Six Eyes with infinity pattern visible, fair skin, sharp jawline softened for feminine version, strikingly beautiful androgynous face, sharp confident features, 175cm tall athletic feminine figure, confident powerful young woman, mid 20s, overwhelming charisma, wearing a dark navy trench coat over a light blouse, holding a clear umbrella, looking over her shoulder at the viewer with a mysterious slight smile, raindrops catching light, standing on a rain-soaked city street at twilight, neon reflections on wet pavement, moody blue-purple atmosphere, full body shot, anime art style, high quality, detailed, beautiful lighting, moody, cinematic, mysterious, atmospheric"
+    },
+    {
+      "char_id": "10",
+      "char_name": "Gojo Satoru (Female)",
+      "scene_id": "c-rooftop",
+      "scene_label": "Rooftop Sunset",
+      "status": "OK",
+      "time": 22.406593084335327,
+      "file": "10-c-rooftop.png",
+      "prompt": "beautiful anime girl, with spiky fluffy snow-white hair, messy stylish short-medium length, stunning brilliant ice-blue eyes, the Six Eyes with infinity pattern visible, fair skin, sharp jawline softened for feminine version, strikingly beautiful androgynous face, sharp confident features, 175cm tall athletic feminine figure, confident powerful young woman, mid 20s, overwhelming charisma, wearing a loose white summer blouse with rolled-up sleeves, wind catching the fabric, eyes closed with a peaceful content smile, wind blowing through her hair, face tilted slightly up toward the sky, standing on a building rooftop at golden hour sunset, orange and purple sky, city skyline in background, wind blowing gently, medium shot, anime art style, high quality, detailed, beautiful lighting, free, peaceful, beautiful, golden hour magic"
+    }
+  ]
+}

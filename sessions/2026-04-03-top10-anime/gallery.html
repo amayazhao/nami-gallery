@@ -3,710 +3,372 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TOP 10 Anime Girl Portrait Gallery</title>
+<title>TOP10角色一致性验证馆</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: #0a0a0f;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: #0b0d14;
+    color: #e8ecff;
     min-height: 100vh;
   }
-  
-  /* Hero */
-  .hero {
-    text-align: center;
-    padding: 60px 20px 40px;
-    background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0a1628 100%);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .hero h1 {
-    font-size: 2.2rem;
-    background: linear-gradient(135deg, #ff6b9d, #c44dff, #6e8efb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 12px;
-  }
-  .hero .subtitle {
-    font-size: 1rem;
-    color: #888;
-    margin-bottom: 8px;
-  }
-  .hero .stats {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
-  .hero .stat {
-    text-align: center;
-  }
-  .hero .stat .num {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #c44dff;
-  }
-  .hero .stat .label {
-    font-size: 0.8rem;
-    color: #666;
-    text-transform: uppercase;
-  }
-  
-  .note-box {
-    max-width: 900px;
-    margin: 30px auto 0;
-    padding: 16px 24px;
-    background: rgba(110,142,251,0.08);
-    border: 1px solid rgba(110,142,251,0.2);
-    border-radius: 10px;
-    font-size: 0.88rem;
-    color: #a0b4f0;
-    line-height: 1.7;
-  }
-  .note-box strong { color: #6e8efb; }
-  
-  /* Gallery */
-  .gallery {
-    max-width: 1300px;
-    margin: 40px auto;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-  
-  .card {
-    background: #12121a;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.06);
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    min-height: 460px;
-    transition: box-shadow 0.3s;
-  }
-  .card:hover {
-    box-shadow: 0 8px 40px rgba(196,77,255,0.1);
-  }
-  
-  @media (max-width: 800px) {
-    .card { grid-template-columns: 1fr; }
-    .card .img-wrap { max-height: 400px; }
-  }
-  
-  .card .img-wrap {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .card .img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s;
-  }
-  .card:hover .img-wrap img { transform: scale(1.03); }
-  .card .img-wrap .badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(196,77,255,0.85);
-    color: white;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    backdrop-filter: blur(8px);
-  }
-  
-  .card .detail {
-    padding: 24px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    overflow-y: auto;
-  }
-  .card .detail .name-row {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .card .detail .name-cn {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-  }
-  .card .detail .name-en {
-    font-size: 0.9rem;
-    color: #888;
-  }
-  .card .detail .anime {
-    font-size: 0.82rem;
-    color: #c44dff;
-  }
-  .card .detail .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .card .detail .tag {
-    background: rgba(196,77,255,0.12);
-    color: #c9a0ff;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.72rem;
-  }
-  
-  /* Feature extraction section */
-  .section-title {
-    font-size: 0.78rem;
-    color: #6e8efb;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 4px;
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 16px;
-    font-size: 0.78rem;
-  }
-  .features-grid .feat-item {
-    display: flex;
-    gap: 6px;
-    padding: 2px 0;
-    line-height: 1.5;
-  }
-  .feat-item .feat-key {
-    color: #888;
-    min-width: 38px;
-    font-weight: 500;
-  }
-  .feat-item .feat-val {
-    color: #ccc;
-  }
-  
-  /* Prompt display */
-  .prompt-block {
-    background: #0d0d14;
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-family: 'Cascadia Code', 'Consolas', monospace;
-    font-size: 0.72rem;
-    line-height: 1.6;
-    color: #9ca3af;
-    max-height: 180px;
-    overflow-y: auto;
-    word-break: break-word;
-    white-space: pre-wrap;
-    position: relative;
-  }
-  .prompt-block .prompt-label {
+  a { color: inherit; }
+
+  .topbar {
     position: sticky;
     top: 0;
-    display: inline-block;
-    background: #c44dff;
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.65rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  /* highlight key parts */
-  .prompt-block .hl-hair { color: #fbbf24; }
-  .prompt-block .hl-eyes { color: #60a5fa; }
-  .prompt-block .hl-outfit { color: #f472b6; }
-  .prompt-block .hl-expr { color: #4ade80; }
-  .prompt-block .hl-scene { color: #a78bfa; }
-  
-  /* Score bar */
-  .score-row {
+    z-index: 99;
     display: flex;
     align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(11,13,20,0.92);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+  }
+  .btn {
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.04);
+    color: #d8deff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn:hover { background: rgba(255,255,255,0.09); }
+  .title {
+    font-size: 15px;
+    color: #9fb0ff;
+    font-weight: 600;
+  }
+
+  .hero {
+    padding: 26px 18px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(140deg, #1b1432, #0e172e 55%, #111820);
+  }
+  .hero h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #ff7fb1, #b39dff, #7fb3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    color: #b8c0e8;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 10px 12px;
+    min-width: 110px;
+  }
+  .stat .n { font-size: 22px; color: #d7b1ff; font-weight: 700; }
+  .stat .l { font-size: 12px; color: #a4add7; margin-top: 2px; }
+
+  .wrap {
+    max-width: 1240px;
+    margin: 20px auto 40px;
+    padding: 0 16px;
+  }
+
+  /* Home list */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: #12182a;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: 0.25s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(104, 96, 255, 0.2);
+  }
+  .card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body {
+    padding: 12px;
+  }
+  .name-row {
+    display: flex;
+    align-items: baseline;
     gap: 8px;
+    margin-bottom: 4px;
   }
-  .score-label {
-    font-size: 0.75rem;
-    color: #666;
-    min-width: 50px;
+  .name-cn { font-size: 20px; font-weight: 700; color: #fff; }
+  .name-en { font-size: 12px; color: #9ea8d5; }
+  .anime { font-size: 12px; color: #b98cff; margin-bottom: 8px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .tag {
+    font-size: 11px;
+    color: #cfd6ff;
+    background: rgba(185,140,255,0.18);
+    border: 1px solid rgba(185,140,255,0.35);
+    padding: 2px 8px;
+    border-radius: 999px;
   }
-  .score-bar {
-    flex: 1;
-    height: 6px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 3px;
+
+  /* Detail */
+  .detail {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 900px) {
+    .detail { grid-template-columns: 1fr; }
+  }
+  .panel {
+    background: #12182a;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
     overflow: hidden;
   }
-  .score-bar .fill {
-    height: 100%;
-    border-radius: 3px;
+  .panel-head {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 13px;
+    color: #b8c0e8;
+    background: rgba(255,255,255,0.03);
   }
-  .score-val {
-    font-size: 0.8rem;
-    font-weight: 600;
-    min-width: 30px;
-    text-align: right;
+  .portrait-box img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    cursor: zoom-in;
   }
-  
-  /* Lightbox */
+  .meta {
+    padding: 14px;
+  }
+  .meta h2 {
+    margin-bottom: 6px;
+    font-size: 26px;
+  }
+  .meta .sub { color: #9ea8d5; font-size: 13px; margin-bottom: 6px; }
+  .meta .desc { color: #bfc8f5; font-size: 13px; line-height: 1.7; }
+
+  .scene-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  @media (max-width: 900px) {
+    .scene-grid { grid-template-columns: 1fr; }
+  }
+  .scene-card {
+    background: #0e1425;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .scene-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+  }
+  .scene-info { padding: 10px; }
+  .scene-info .sname { font-size: 14px; font-weight: 700; color: #f4f6ff; }
+  .scene-info .sdesc { font-size: 12px; color: #a9b2dc; margin-top: 4px; line-height: 1.6; }
+
+  .hint {
+    margin-top: 12px;
+    color: #9ea8d5;
+    font-size: 12px;
+    line-height: 1.7;
+    padding: 10px 12px;
+    border: 1px dashed rgba(255,255,255,0.18);
+    border-radius: 10px;
+  }
+
   .lightbox {
     display: none;
     position: fixed;
     inset: 0;
+    z-index: 999;
     background: rgba(0,0,0,0.92);
-    z-index: 1000;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
+    justify-content: center;
   }
   .lightbox.active { display: flex; }
   .lightbox img {
-    max-width: 90vw;
-    max-height: 90vh;
-    border-radius: 12px;
-    box-shadow: 0 0 60px rgba(196,77,255,0.2);
+    max-width: 92vw;
+    max-height: 92vh;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(180, 127, 255, 0.3);
   }
-  
-  /* Analysis table */
-  .analysis {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-  .analysis h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #c44dff;
-  }
-  .analysis table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #12121a;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .analysis th, .analysis td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-size: 0.85rem;
-  }
-  .analysis th {
-    background: rgba(196,77,255,0.1);
-    color: #c9a0ff;
-    font-weight: 600;
-  }
-  .analysis td { color: #ccc; }
-  .check { color: #4ade80; }
-  .cross { color: #f87171; }
-  .partial { color: #fbbf24; }
-  
-  .conclusion {
-    max-width: 1100px;
-    margin: 24px auto 60px;
-    padding: 24px;
-    background: linear-gradient(135deg, rgba(196,77,255,0.08), rgba(110,142,251,0.08));
-    border: 1px solid rgba(196,77,255,0.15);
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: #bbb;
-  }
-  .conclusion strong { color: #c44dff; }
-  
-  footer {
+
+  .empty {
     text-align: center;
-    padding: 40px 20px;
-    color: #444;
-    font-size: 0.75rem;
-    border-top: 1px solid rgba(255,255,255,0.03);
+    color: #a4add7;
+    padding: 30px;
   }
 </style>
 </head>
 <body>
-
-<nav style="position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,15,0.92);backdrop-filter:blur(16px);padding:12px 24px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(255,255,255,0.06);">
-  <a href="../../index.html" style="color:#c44dff;text-decoration:none;font-size:0.9rem;display:flex;align-items:center;gap:6px;">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    返回写真馆
-  </a>
-  <span style="color:#444;">|</span>
-  <span style="font-size:0.9rem;color:#888;">TOP 10 Anime Girl Portrait Gallery</span>
-</nav>
-
-<div class="hero" style="padding-top:100px;">
-  <h1>TOP 10 Anime Girl Portrait Gallery</h1>
-  <p class="subtitle">Pure Prompt-Driven Character Generation Test</p>
-  <p class="subtitle" style="color:#666;font-size:0.85rem">MiniMax image-01 | No Reference Image | 2026-04-03</p>
-  <div class="stats">
-    <div class="stat"><div class="num">10</div><div class="label">Characters</div></div>
-    <div class="stat"><div class="num">184s</div><div class="label">Total Time</div></div>
-    <div class="stat"><div class="num">10/10</div><div class="label">Success</div></div>
-    <div class="stat"><div class="num">&yen;0.25</div><div class="label">Total Cost</div></div>
+  <div class="topbar">
+    <a class="btn" href="../../index.html">← 返回写真馆</a>
+    <button class="btn" id="backListBtn" style="display:none;">← 返回TOP10列表</button>
+    <div class="title" id="pageTitle">TOP10角色一致性验证馆</div>
   </div>
-  <div class="note-box">
-    <strong>Prompt Strategy:</strong> Each character's prompt is assembled purely from extracted visual features (hair, eyes, skin, face, body type, outfit, expression, scene). 
-    No character name is used in the actual generation prompt &mdash; only descriptive traits. This tests whether feature extraction alone can reconstruct recognizable characters.
+
+  <section class="hero">
+    <h1>TOP 10 角色一致性验证</h1>
+    <p>
+      第一层是角色形象图（Identity Portrait），用于锚定“她是谁”；
+      第二层是3个验证场景（Cafe / Rainy Street / Rooftop），用于检查“换场景后还是不是她”。
+      点击首页角色卡片进入二级详情页查看场景图。
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="n">10</div><div class="l">角色</div></div>
+      <div class="stat"><div class="n">40</div><div class="l">总图数</div></div>
+      <div class="stat"><div class="n">10 + 30</div><div class="l">形象图 + 场景图</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">场景图完成率</div></div>
+    </div>
+  </section>
+
+  <main class="wrap" id="app"></main>
+
+  <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightboxImg" src="" alt="preview" />
   </div>
-</div>
-
-<div class="gallery" id="gallery"></div>
-
-<div class="analysis">
-  <h2>Feature Accuracy Analysis</h2>
-  <table id="analysisTable">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Character</th>
-        <th>Hair</th>
-        <th>Eyes</th>
-        <th>Outfit</th>
-        <th>Scene</th>
-        <th>Vibe</th>
-        <th>Overall</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</div>
-
-<div class="conclusion">
-  <strong>Key Findings:</strong><br>
-  1. Hair color &amp; style accuracy is very high (~90%) &mdash; the strongest anchor for character identity<br>
-  2. Eye color follows well (~80%) &mdash; deep purple, cyan-green, light blue all rendered correctly<br>
-  3. Outfit details are partially accurate &mdash; main colors/silhouettes correct, fine details may vary<br>
-  4. Scene/atmosphere matches well &mdash; laboratory, bamboo forest, school corridor all rendered<br>
-  5. Character vibe/personality comes through &mdash; Rem's devotion, Zero Two's playfulness, Frieren's serenity<br><br>
-  <strong>Conclusion:</strong> Pure prompt-driven generation achieves ~75-85% character recognition without using any character names in the prompt. 
-  For V3 Skill, combining text features + reference image will push this to 90%+.<br><br>
-  <strong>Important:</strong> The actual generation prompt contains ZERO character names. It only uses descriptive features 
-  like "long straight black hair", "deep purple-blue eyes", "school uniform blazer". The character name is only used for labeling the output files.
-</div>
-
-<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
-  <img id="lightboxImg" src="" alt="">
-</div>
-
-<footer>
-  Generated by Nami Photoshoot System | Feature Extraction + Prompt Assembly Pipeline Test | 2026-04-03
-</footer>
 
 <script>
-const characters = [
-  {
-    id: "01", name_cn: "樱岛麻衣", name_en: "Mai Sakurajima",
-    anime: "青春猪头少年不会梦到兔女郎学姐",
-    file: "01-mai-sakurajima.png",
-    tags: ["黑长直", "紫蓝瞳", "校服", "冷酷美人"],
-    features: {
-      hair: "long straight black hair, past shoulders, side-swept bangs",
-      eyes: "deep purple-blue eyes, calm and intelligent gaze",
-      skin: "fair porcelain skin",
-      face: "elegant oval face, refined features",
-      body: "165cm healthy well-proportioned feminine figure",
-      age: "mature composed young woman, early 20s"
-    },
-    outfit: "wearing a classic black school uniform blazer over white blouse with red ribbon tie",
-    expression: "calm confident expression with a hint of quiet amusement, looking directly at the viewer",
-    scene: "standing in a school hallway, soft afternoon light from windows, medium shot",
-    vibe: "elegant, mysterious, composed",
-    scores: { hair: 95, eyes: 85, outfit: 90, scene: 85, vibe: 90 },
-    accuracy: ["check","check","check","check","check"]
-  },
-  {
-    id: "02", name_cn: "亚丝娜", name_en: "Asuna Yuuki",
-    anime: "刀剑神域 SAO",
-    file: "02-asuna-yuuki.png",
-    tags: ["栗橙长发", "榛棕瞳", "骑士装", "战斗少女"],
-    features: {
-      hair: "long flowing chestnut-orange hair, reaching waist, with braided side strands",
-      eyes: "warm hazel-brown eyes, bright and determined",
-      skin: "fair warm-toned skin, healthy glow",
-      face: "gentle heart-shaped face, soft features",
-      body: "168cm healthy well-proportioned feminine figure with soft natural curves",
-      age: "youthful energetic young woman, late teens"
-    },
-    outfit: "wearing a white and red Knights of the Blood Oath uniform, elegant armored dress with gold trim",
-    expression: "warm determined smile, gazing at the viewer with bright hopeful eyes",
-    scene: "standing in a sunlit fantasy meadow, golden hour light, medium shot",
-    vibe: "brave, warm, elegant warrior princess",
-    scores: { hair: 80, eyes: 75, outfit: 70, scene: 85, vibe: 80 },
-    accuracy: ["check","partial","partial","check","check"]
-  },
-  {
-    id: "03", name_cn: "薇尔莉特", name_en: "Violet Evergarden",
-    anime: "紫罗兰永恒花园",
-    file: "03-violet-evergarden.png",
-    tags: ["金发低马尾", "宝蓝瞳", "军装连衣裙", "人偶感"],
-    features: {
-      hair: "golden blonde hair tied in a low ponytail with loose side bangs, blue ribbon",
-      eyes: "vivid sapphire blue eyes, crystal clear, emotionally deep",
-      skin: "porcelain fair skin, flawless",
-      face: "doll-like beautiful face, delicate refined features",
-      body: "163cm slender graceful figure",
-      age: "young woman with an air of quiet grace, early 20s"
-    },
-    outfit: "wearing her signature white dress with navy blue jacket, emerald brooch at the collar, white gloves",
-    expression: "serene thoughtful expression, eyes gazing at the viewer with quiet emotion as if reading their heart",
-    scene: "sitting at a writing desk near a window, soft natural daylight, letter paper and pen visible, medium shot",
-    vibe: "elegant, emotionally deep, doll-like beauty",
-    scores: { hair: 85, eyes: 90, outfit: 80, scene: 90, vibe: 95 },
-    accuracy: ["check","check","partial","check","check"]
-  },
-  {
-    id: "04", name_cn: "零二 (02)", name_en: "Zero Two",
-    anime: "DARLING in the FRANXX",
-    file: "04-zero-two.png",
-    tags: ["粉色长发", "红角", "青绿瞳", "红色制服"],
-    features: {
-      hair: "long flowing pink hair with twin red horns on the head, bangs framing face",
-      eyes: "cyan-green eyes with red eyeshadow, sharp seductive gaze",
-      skin: "fair skin with a slight warm undertone",
-      face: "sharp attractive face with confident smirk",
-      body: "170cm healthy well-proportioned feminine figure with soft natural curves",
-      age: "bold confident young woman, early 20s"
-    },
-    outfit: "wearing her red military-style uniform dress with white accents and black stockings",
-    expression: "playful seductive smirk, leaning slightly forward, looking at the viewer with mischievous eyes",
-    scene: "standing in a futuristic corridor with soft blue ambient lighting, medium shot",
-    vibe: "wild, seductive, fearless, iconic pink-haired beauty",
-    scores: { hair: 95, eyes: 90, outfit: 85, scene: 85, vibe: 95 },
-    accuracy: ["check","check","check","check","check"]
-  },
-  {
-    id: "05", name_cn: "蕾姆", name_en: "Rem",
-    anime: "Re:从零开始的异世界生活",
-    file: "05-rem.png",
-    tags: ["天蓝短发", "遮眼", "女仆装", "温柔"],
-    features: {
-      hair: "short sky-blue hair covering right eye, with a flower hair ornament on left side",
-      eyes: "light blue eyes, large and expressive",
-      skin: "fair soft skin, delicate",
-      face: "round cute face, youthful soft features",
-      body: "154cm petite but well-proportioned feminine figure",
-      age: "adorable devoted young woman, late teens"
-    },
-    outfit: "wearing a blue and white maid outfit with frilly apron, black ribbon headband",
-    expression: "gentle loving smile with slightly teary eyes, looking at the viewer with deep devotion",
-    scene: "in a cozy manor kitchen, warm candlelight and morning light, medium shot",
-    vibe: "devoted, sweet, emotionally powerful",
-    scores: { hair: 95, eyes: 85, outfit: 90, scene: 80, vibe: 95 },
-    accuracy: ["check","check","check","check","check"]
-  },
-  {
-    id: "06", name_cn: "御坂美琴", name_en: "Mikoto Misaka",
-    anime: "某科学的超电磁炮",
-    file: "06-mikoto-misaka.png",
-    tags: ["栗色短发", "棕瞳", "常盘台校服", "元气"],
-    features: {
-      hair: "short-medium chestnut brown hair, shoulder length, slightly messy tomboyish style",
-      eyes: "warm brown eyes, spirited and confident",
-      skin: "fair healthy skin with natural flush",
-      face: "youthful energetic face, cute but determined features",
-      body: "161cm athletic lean figure, fit and energetic",
-      age: "spirited energetic teenage girl, mid teens appearance"
-    },
-    outfit: "wearing Tokiwadai Middle School uniform - white short-sleeved blouse with grey pleated skirt and light brown vest",
-    expression: "energetic confident grin with a slight competitive spark in her eyes, looking at the viewer",
-    scene: "standing on a city bridge with Academy City skyline behind, bright afternoon sun, medium shot",
-    vibe: "tsundere, energetic, powerful, tomboyish charm",
-    scores: { hair: 90, eyes: 85, outfit: 85, scene: 90, vibe: 90 },
-    accuracy: ["check","check","check","check","check"]
-  },
-  {
-    id: "07", name_cn: "牧濑红莉栖", name_en: "Kurisu Makise",
-    anime: "命运石之门 Steins;Gate",
-    file: "07-kurisu-makise.png",
-    tags: ["赤栗长发", "呆毛", "紫瞳", "实验室"],
-    features: {
-      hair: "long auburn-chestnut hair reaching mid-back, slightly wavy, with ahoge (antenna hair)",
-      eyes: "violet-purple eyes, sharp and analytical",
-      skin: "fair skin, light complexion",
-      face: "refined intelligent face, sharp beautiful features",
-      body: "160cm slender graceful figure",
-      age: "brilliant composed young woman, early 20s"
-    },
-    outfit: "wearing a white long-sleeved dress shirt under a brown jacket, with black shorts and black knee-high stockings",
-    expression: "tsundere expression - slightly flustered but trying to look composed, arms crossed, gazing at the viewer",
-    scene: "in a messy laboratory with monitors and equipment, cool fluorescent lighting, medium shot",
-    vibe: "genius, tsundere, sharp-tongued beauty",
-    scores: { hair: 90, eyes: 90, outfit: 85, scene: 95, vibe: 90 },
-    accuracy: ["check","check","check","check","check"]
-  },
-  {
-    id: "08", name_cn: "灶门祢豆子", name_en: "Nezuko Kamado",
-    anime: "鬼灭之刃",
-    file: "08-nezuko-kamado.png",
-    tags: ["黑橙渐变发", "粉瞳", "粉色和服", "竹林"],
-    features: {
-      hair: "long black hair with orange-red gradient tips, worn loose, with pink ribbon",
-      eyes: "pink eyes, large and innocent",
-      skin: "fair skin with soft warm undertone",
-      face: "cute round face",
-      body: "153cm petite delicate figure",
-      age: "gentle innocent young girl"
-    },
-    outfit: "wearing a pink kimono with hemp leaf pattern, dark obi sash, butterfly hair ornament",
-    expression: "gentle innocent gaze through slightly narrowed eyes, peaceful cute expression, looking at the viewer",
-    scene: "standing in a bamboo forest with dappled sunlight filtering through, soft green-tinted light, medium shot",
-    vibe: "gentle, protective, iconic beauty",
-    scores: { hair: 80, eyes: 75, outfit: 85, scene: 90, vibe: 75 },
-    accuracy: ["partial","partial","check","check","partial"]
-  },
-  {
-    id: "09", name_cn: "芙莉莲", name_en: "Frieren",
-    anime: "葬送的芙莉莲",
-    file: "09-frieren.png",
-    tags: ["银白长发", "绿瞳", "尖耳", "法师袍"],
-    features: {
-      hair: "long silver-white hair in twin low ponytails, with green leaves or twigs as natural hair ornaments",
-      eyes: "deep green eyes, calm ancient wisdom in her gaze",
-      skin: "pale porcelain skin, ethereal",
-      face: "delicate elfin face with pointed ears, ageless beauty",
-      body: "165cm slender graceful elfin figure",
-      age: "ancient elf with youthful appearance, timeless beauty"
-    },
-    outfit: "wearing a white and purple mage robe with gold trim, carrying a wooden staff",
-    expression: "serene slightly melancholic expression with distant gaze, a faint gentle smile, looking at the viewer",
-    scene: "standing in an ancient magical forest clearing, soft ethereal golden light, floating magical particles, medium shot",
-    vibe: "ancient, serene, melancholic beauty, wise elf mage",
-    scores: { hair: 90, eyes: 95, outfit: 85, scene: 95, vibe: 95 },
-    accuracy: ["check","check","check","check","check"]
-  },
-  {
-    id: "10", name_cn: "女版五条悟", name_en: "Gojo Satoru (Female)",
-    anime: "咒术回战 (Gender-swap)",
-    file: "10-gojo-satoru-female-ver..png",
-    tags: ["白色炸毛", "冰蓝瞳", "眼罩", "咒术高专"],
-    features: {
-      hair: "spiky fluffy snow-white hair, messy stylish short-medium length",
-      eyes: "stunning brilliant ice-blue eyes, the Six Eyes with infinity pattern visible",
-      skin: "fair skin, sharp jawline softened for feminine version",
-      face: "strikingly beautiful androgynous face, sharp confident features",
-      body: "175cm tall athletic feminine figure, long legs, model-like proportions",
-      age: "confident powerful young woman, mid 20s, overwhelming charisma"
-    },
-    outfit: "wearing the Jujutsu High dark navy uniform jacket open casually, black top underneath, signature black blindfold pulled down around neck",
-    expression: "cocky playful smirk with one eye half-closed, radiating overwhelming confidence, looking at the viewer",
-    scene: "standing on a rooftop at sunset, wind blowing hair, golden and purple sky, medium shot",
-    vibe: "overpowered, charismatic, cocky beautiful, strongest sorcerer",
-    scores: { hair: 95, eyes: 85, outfit: 80, scene: 90, vibe: 90 },
-    accuracy: ["check","check","check","check","check"]
-  }
+const SCENES = {
+  "a-cafe": { label: "Scene A · Cafe Afternoon", desc: "暖色室内+近景，测试五官与发型稳定性" },
+  "b-rain": { label: "Scene B · Rainy Street", desc: "冷色雨夜+全身，测试体型与气质保持" },
+  "c-rooftop": { label: "Scene C · Rooftop Sunset", desc: "夕阳风吹场景，测试神态与氛围一致性" }
+};
+
+const CHARS = [
+  { id: "01", cn: "樱岛麻衣", en: "Mai Sakurajima", anime: "青春猪头少年不会梦到兔女郎学姐", portrait: "01-mai-sakurajima.png", tags: ["黑长直", "紫蓝瞳", "清冷"], anchor: "黑长直 + 紫蓝瞳 + 冷静眼神" },
+  { id: "02", cn: "亚丝娜", en: "Asuna Yuuki", anime: "刀剑神域 SAO", portrait: "02-asuna-yuuki.png", tags: ["栗橙长发", "骑士感", "温柔坚毅"], anchor: "栗橙长发 + 亲和力表情" },
+  { id: "03", cn: "薇尔莉特", en: "Violet Evergarden", anime: "紫罗兰永恒花园", portrait: "03-violet-evergarden.png", tags: ["金发", "蓝瞳", "优雅"], anchor: "金发低马尾 + 宝蓝瞳 + 人偶感" },
+  { id: "04", cn: "零二", en: "Zero Two", anime: "DARLING in the FRANXX", portrait: "04-zero-two.png", tags: ["粉发", "红角", "野性"], anchor: "粉发 + 红角 + 俏皮侵略感" },
+  { id: "05", cn: "蕾姆", en: "Rem", anime: "Re:从零开始的异世界生活", portrait: "05-rem.png", tags: ["天蓝短发", "遮眼", "温柔"], anchor: "天蓝短发遮眼 + 软萌表情" },
+  { id: "06", cn: "御坂美琴", en: "Mikoto Misaka", anime: "某科学的超电磁炮", portrait: "06-mikoto-misaka.png", tags: ["栗色短发", "元气", "运动感"], anchor: "栗色短发 + 活力感" },
+  { id: "07", cn: "牧濑红莉栖", en: "Kurisu Makise", anime: "命运石之门", portrait: "07-kurisu-makise.png", tags: ["赤栗长发", "呆毛", "知性"], anchor: "赤栗发 + 呆毛 + 理性傲娇" },
+  { id: "08", cn: "灶门祢豆子", en: "Nezuko Kamado", anime: "鬼灭之刃", portrait: "08-nezuko-kamado.png", tags: ["黑橙渐变", "粉瞳", "柔和"], anchor: "黑橙渐变发 + 粉瞳 + 安静气质" },
+  { id: "09", cn: "芙莉莲", en: "Frieren", anime: "葬送的芙莉莲", portrait: "09-frieren.png", tags: ["银白发", "尖耳", "空灵"], anchor: "银白长发 + 绿瞳 + 精灵耳" },
+  { id: "10", cn: "女版五条悟", en: "Gojo (Female)", anime: "咒术回战（性转）", portrait: "10-gojo-satoru-female-ver..png", tags: ["白炸毛", "冰蓝瞳", "强气"], anchor: "白发 + 冰蓝瞳 + 绝对自信" }
 ];
 
-// Build gallery
-const gallery = document.getElementById("gallery");
-characters.forEach(c => {
-  const avgScore = Math.round(Object.values(c.scores).reduce((a,b) => a+b, 0) / 5);
-  const scoreColor = avgScore >= 90 ? "#4ade80" : avgScore >= 80 ? "#6e8efb" : "#fbbf24";
-  
-  // Build the actual prompt as sent to API (no character name!)
-  const promptParts = [
-    "beautiful anime girl",
-    `with ${c.features.hair}`,
-    c.features.eyes,
-    c.features.skin,
-    c.features.face,
-    c.features.body,
-    c.features.age,
-    c.outfit,
-    c.expression,
-    c.scene,
-    "anime art style, high quality, detailed, beautiful lighting",
-    c.vibe
-  ];
-  const fullPrompt = promptParts.join(", ");
-  
-  // Feature rows
-  const featureEntries = [
-    ["Hair", c.features.hair],
-    ["Eyes", c.features.eyes],
-    ["Skin", c.features.skin],
-    ["Face", c.features.face],
-    ["Body", c.features.body],
-    ["Age", c.features.age],
-  ];
-  const featureHTML = featureEntries.map(([k,v]) => 
-    `<div class="feat-item"><span class="feat-key">${k}</span><span class="feat-val">${v}</span></div>`
-  ).join("");
-  
-  const el = document.createElement("div");
-  el.className = "card";
-  el.innerHTML = `
-    <div class="img-wrap" onclick="openLightbox('./${c.file}')">
-      <img src="./${c.file}" alt="${c.name_cn}" loading="lazy">
-      <div class="badge">#${c.id}</div>
-    </div>
-    <div class="detail">
-      <div class="name-row">
-        <span class="name-cn">${c.name_cn}</span>
-        <span class="name-en">${c.name_en}</span>
-      </div>
-      <div class="anime">${c.anime}</div>
-      <div class="tags">
-        ${c.tags.map(t => `<span class="tag">${t}</span>`).join("")}
-      </div>
-      
-      <div class="section-title">Extracted Features</div>
-      <div class="features-grid">${featureHTML}</div>
-      
-      <div class="section-title">Outfit &amp; Expression</div>
-      <div style="font-size:0.78rem;color:#ccc;line-height:1.5">
-        ${c.outfit}<br>
-        <span style="color:#4ade80">${c.expression}</span>
-      </div>
-      
-      <div class="section-title">Actual Prompt Sent to API</div>
-      <div class="prompt-block"><span class="prompt-label">PROMPT (no character name)</span>
-${fullPrompt}</div>
-      
-      <div class="score-row">
-        <span class="score-label">Accuracy</span>
-        <div class="score-bar"><div class="fill" style="width:${avgScore}%;background:${scoreColor}"></div></div>
-        <span class="score-val" style="color:${scoreColor}">${avgScore}%</span>
-      </div>
-    </div>
-  `;
-  gallery.appendChild(el);
-});
-
-// Analysis table
-const tbody = document.querySelector("#analysisTable tbody");
-characters.forEach(c => {
-  const icons = c.accuracy.map(a => 
-    a === "check" ? '<span class="check">&#10003;</span>' :
-    a === "cross" ? '<span class="cross">&#10007;</span>' :
-    '<span class="partial">~</span>'
-  );
-  const avgScore = Math.round(Object.values(c.scores).reduce((a,b) => a+b, 0) / 5);
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>#${c.id}</td>
-    <td>${c.name_cn}</td>
-    <td>${icons[0]}</td>
-    <td>${icons[1]}</td>
-    <td>${icons[2]}</td>
-    <td>${icons[3]}</td>
-    <td>${icons[4]}</td>
-    <td style="font-weight:600;color:${avgScore >= 90 ? '#4ade80' : avgScore >= 80 ? '#6e8efb' : '#fbbf24'}">${avgScore}%</td>
-  `;
-  tbody.appendChild(row);
-});
-
-// Lightbox
-function openLightbox(src) {
-  document.getElementById("lightboxImg").src = src;
-  document.getElementById("lightbox").classList.add("active");
+function sceneFile(charId, sceneId) {
+  return `${charId}-${sceneId}.png`;
 }
+
+function openLightbox(src) {
+  const box = document.getElementById("lightbox");
+  document.getElementById("lightboxImg").src = src;
+  box.classList.add("active");
+}
+
+function renderHome() {
+  document.getElementById("backListBtn").style.display = "none";
+  document.getElementById("pageTitle").textContent = "TOP10角色一致性验证馆";
+
+  const cards = CHARS.map(c => `
+    <article class="card">
+      <img src="./${c.portrait}" alt="${c.cn}" loading="lazy" onclick="openLightbox('./${c.portrait}')">
+      <div class="card-body">
+        <div class="name-row"><div class="name-cn">${c.cn}</div><div class="name-en">${c.en}</div></div>
+        <div class="anime">${c.anime}</div>
+        <div class="tags">${c.tags.map(t => `<span class='tag'>${t}</span>`).join("")}</div>
+        <button class="btn" style="width:100%;" onclick="goDetail('${c.id}')">查看场景验证页</button>
+      </div>
+    </article>
+  `).join("");
+
+  document.getElementById("app").innerHTML = `<section class="grid">${cards}</section>`;
+}
+
+function renderDetail(id) {
+  const c = CHARS.find(x => x.id === id);
+  if (!c) {
+    document.getElementById("app").innerHTML = `<div class='empty'>角色不存在</div>`;
+    return;
+  }
+
+  document.getElementById("backListBtn").style.display = "inline-block";
+  document.getElementById("pageTitle").textContent = `${c.cn} · 场景一致性验证`;
+
+  const sceneCards = Object.keys(SCENES).map(sceneId => {
+    const s = SCENES[sceneId];
+    const file = sceneFile(c.id, sceneId);
+    return `
+      <div class="scene-card">
+        <img src="./${file}" alt="${c.cn}-${sceneId}" loading="lazy" onclick="openLightbox('./${file}')">
+        <div class="scene-info">
+          <div class="sname">${s.label}</div>
+          <div class="sdesc">${s.desc}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("app").innerHTML = `
+    <section class="detail">
+      <div class="panel portrait-box">
+        <div class="panel-head">Identity Portrait（形象锚点图）</div>
+        <img src="./${c.portrait}" alt="${c.cn}" onclick="openLightbox('./${c.portrait}')">
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">Consistency Scenes（跨场景一致性）</div>
+        <div class="meta">
+          <h2>${c.cn}</h2>
+          <div class="sub">${c.en} · ${c.anime}</div>
+          <div class="desc">核心身份锚点：${c.anchor}</div>
+          <div class="hint">
+            观察建议：先看左侧形象图，再看右侧3个场景，重点看发型/发色、眼神、脸型与整体气质是否保持同一角色。
+          </div>
+        </div>
+        <div class="scene-grid">${sceneCards}</div>
+      </div>
+    </section>
+  `;
+}
+
+function goDetail(id) {
+  location.hash = `char-${id}`;
+}
+
+function router() {
+  const hash = location.hash || "";
+  if (hash.startsWith("#char-")) {
+    renderDetail(hash.replace("#char-", ""));
+  } else {
+    renderHome();
+  }
+}
+
+document.getElementById("backListBtn").addEventListener("click", () => {
+  location.hash = "";
+});
+
+window.addEventListener("hashchange", router);
+router();
 </script>
 </body>
 </html>
