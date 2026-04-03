@@ -1,0 +1,141 @@
+{
+  "timestamp": "2026-04-03T10:58:20.404225",
+  "total_time": 184.02382946014404,
+  "ok_count": 9,
+  "fail_count": 1,
+  "cost_cny": 0.225,
+  "results": [
+    {
+      "id": "01",
+      "name": "樱岛麻衣",
+      "status": "OK",
+      "time": 17.609659433364868,
+      "file": "01-mai-sakurajima.png"
+    },
+    {
+      "id": "02",
+      "name": "亚丝娜",
+      "status": "OK",
+      "time": 18.22707509994507,
+      "file": "02-asuna-yuuki.png"
+    },
+    {
+      "id": "03",
+      "name": "薇尔莉特·伊芙加登",
+      "status": "OK",
+      "time": 19.619086742401123,
+      "file": "03-violet-evergarden.png"
+    },
+    {
+      "id": "04",
+      "name": "零二 (02)",
+      "status": "OK",
+      "time": 30.218592643737793,
+      "file": "04-zero-two.png"
+    },
+    {
+      "id": "05",
+      "name": "蕾姆",
+      "status": "OK",
+      "time": 16.912020206451416,
+      "file": "05-rem.png"
+    },
+    {
+      "id": "06",
+      "name": "御坂美琴",
+      "status": "OK",
+      "time": 18.5024254322052,
+      "file": "06-mikoto-misaka.png"
+    },
+    {
+      "id": "07",
+      "name": "牧濑红莉栖",
+      "status": "OK",
+      "time": 17.815913915634155,
+      "file": "07-kurisu-makise.png"
+    },
+    {
+      "id": "08",
+      "name": "灶门祢豆子",
+      "status": "ERROR-1026",
+      "time": 6.525712251663208,
+      "file": null
+    },
+    {
+      "id": "09",
+      "name": "芙莉莲",
+      "status": "OK",
+      "time": 19.468927145004272,
+      "file": "09-frieren.png"
+    },
+    {
+      "id": "10",
+      "name": "五条悟（性转版）",
+      "status": "OK",
+      "time": 19.08074688911438,
+      "file": "10-gojo-satoru-female-ver..png"
+    }
+  ],
+  "characters": [
+    {
+      "id": "01",
+      "name_cn": "樱岛麻衣",
+      "name_en": "Mai Sakurajima",
+      "anime": "青春猪头少年不会梦到兔女郎学姐"
+    },
+    {
+      "id": "02",
+      "name_cn": "亚丝娜",
+      "name_en": "Asuna Yuuki",
+      "anime": "刀剑神域 SAO"
+    },
+    {
+      "id": "03",
+      "name_cn": "薇尔莉特·伊芙加登",
+      "name_en": "Violet Evergarden",
+      "anime": "紫罗兰永恒花园"
+    },
+    {
+      "id": "04",
+      "name_cn": "零二 (02)",
+      "name_en": "Zero Two",
+      "anime": "DARLING in the FRANXX"
+    },
+    {
+      "id": "05",
+      "name_cn": "蕾姆",
+      "name_en": "Rem",
+      "anime": "Re:从零开始的异世界生活"
+    },
+    {
+      "id": "06",
+      "name_cn": "御坂美琴",
+      "name_en": "Mikoto Misaka",
+      "anime": "某科学的超电磁炮"
+    },
+    {
+      "id": "07",
+      "name_cn": "牧濑红莉栖",
+      "name_en": "Kurisu Makise",
+      "anime": "命运石之门 Steins;Gate"
+    },
+    {
+      "id": "08",
+      "name_cn": "灶门祢豆子",
+      "name_en": "Nezuko Kamado",
+      "anime": "鬼灭之刃"
+    },
+    {
+      "id": "09",
+      "name_cn": "芙莉莲",
+      "name_en": "Frieren",
+      "anime": "葬送的芙莉莲"
+    },
+    {
+      "id": "10",
+      "name_cn": "五条悟（性转版）",
+      "name_en": "Gojo Satoru (Female ver.)",
+      "anime": "咒术回战（性转同人）"
+    }
+  ]
+}
