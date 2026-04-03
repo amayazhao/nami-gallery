@@ -3,372 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TOP10角色一致性验证馆</title>
+<title>TOP 10 Anime Girl Portrait Gallery</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
-    background: #0b0d14;
-    color: #e8ecff;
-    min-height: 100vh;
-  }
-  a { color: inherit; }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-deep:#0a0a12;--bg-card:rgba(18,18,30,0.85);--bg-glass:rgba(255,255,255,0.03);
+  --purple:#c44dff;--purple-dim:rgba(196,77,255,0.15);--pink:#ff6b9d;--cyan:#00d4ff;
+  --gold:#f5a623;--text:#e8e6f0;--text-dim:#888;--radius:16px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(196,77,255,0.08),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(255,107,157,0.06),transparent 60%);pointer-events:none;z-index:0}
 
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 18px;
-    background: rgba(11,13,20,0.92);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-  }
-  .btn {
-    border: 1px solid rgba(255,255,255,0.18);
-    background: rgba(255,255,255,0.04);
-    color: #d8deff;
-    padding: 8px 12px;
-    border-radius: 10px;
-    font-size: 13px;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .btn:hover { background: rgba(255,255,255,0.09); }
-  .title {
-    font-size: 15px;
-    color: #9fb0ff;
-    font-weight: 600;
-  }
+/* Top Nav */
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,18,0.92);backdrop-filter:blur(20px);padding:14px 28px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(196,77,255,0.15)}
+.top-nav a{color:var(--purple);text-decoration:none;font-size:0.9rem;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.top-nav a:hover{color:var(--pink)}
+.top-nav .sep{color:rgba(255,255,255,0.15)}
+.top-nav .title{font-size:0.9rem;color:var(--text-dim);font-weight:500}
+.nav-back{display:none}
 
-  .hero {
-    padding: 26px 18px 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    background: linear-gradient(140deg, #1b1432, #0e172e 55%, #111820);
-  }
-  .hero h1 {
-    font-size: 30px;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #ff7fb1, #b39dff, #7fb3ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero p {
-    color: #b8c0e8;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 12px;
-  }
-  .stat {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 10px 12px;
-    min-width: 110px;
-  }
-  .stat .n { font-size: 22px; color: #d7b1ff; font-weight: 700; }
-  .stat .l { font-size: 12px; color: #a4add7; margin-top: 2px; }
+/* Hero */
+.hero{text-align:center;padding:120px 24px 48px;position:relative;z-index:1}
+.hero h1{font-size:2.6rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em}
+.hero .sub{color:var(--text-dim);margin-top:12px;font-size:1.05rem;line-height:1.6}
+.hero .sub em{color:var(--purple);font-style:normal;font-weight:600}
+.hero .badge{display:inline-block;margin-top:16px;padding:6px 18px;border-radius:20px;background:var(--purple-dim);border:1px solid rgba(196,77,255,0.25);color:var(--purple);font-size:0.8rem;font-weight:600;letter-spacing:0.04em}
 
-  .wrap {
-    max-width: 1240px;
-    margin: 20px auto 40px;
-    padding: 0 16px;
-  }
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;padding:0 28px 80px;max-width:1400px;margin:0 auto;position:relative;z-index:1}
+.card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:all 0.35s cubic-bezier(.4,0,.2,1);position:relative}
+.card:hover{transform:translateY(-6px);border-color:rgba(196,77,255,0.35);box-shadow:0 20px 60px rgba(196,77,255,0.12)}
+.card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform 0.5s}
+.card:hover .card-img{transform:scale(1.04)}
+.card-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(10,10,18,0.95));pointer-events:none}
+.card-rank{position:absolute;top:14px;left:14px;background:rgba(10,10,18,0.75);backdrop-filter:blur(8px);border:1px solid rgba(196,77,255,0.3);color:var(--purple);font-size:0.75rem;font-weight:800;padding:5px 10px;border-radius:8px;letter-spacing:0.04em}
+.card-name{font-size:1.2rem;font-weight:700;margin-bottom:2px}
+.card-name-en{font-size:0.78rem;color:var(--text-dim);font-weight:400}
+.card-anime{font-size:0.75rem;color:var(--pink);margin-top:6px;opacity:0.85}
+.card-vibe{font-size:0.7rem;color:var(--text-dim);margin-top:4px;font-style:italic}
+.card-arrow{position:absolute;top:14px;right:14px;background:rgba(196,77,255,0.2);backdrop-filter:blur(8px);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateX(-8px);transition:all 0.3s}
+.card:hover .card-arrow{opacity:1;transform:translateX(0)}
+.card-arrow svg{width:16px;height:16px;stroke:var(--purple);fill:none;stroke-width:2}
 
-  /* Home list */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
-  }
-  .card {
-    background: #12182a;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: 0.25s;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 28px rgba(104, 96, 255, 0.2);
-  }
-  .card img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    display: block;
-  }
-  .card-body {
-    padding: 12px;
-  }
-  .name-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 4px;
-  }
-  .name-cn { font-size: 20px; font-weight: 700; color: #fff; }
-  .name-en { font-size: 12px; color: #9ea8d5; }
-  .anime { font-size: 12px; color: #b98cff; margin-bottom: 8px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-  .tag {
-    font-size: 11px;
-    color: #cfd6ff;
-    background: rgba(185,140,255,0.18);
-    border: 1px solid rgba(185,140,255,0.35);
-    padding: 2px 8px;
-    border-radius: 999px;
-  }
+/* Detail View */
+.detail{display:none;padding:100px 28px 80px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.detail.active{display:block}
+.detail-header{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px}
+.detail-portrait{width:300px;border-radius:var(--radius);overflow:hidden;border:2px solid rgba(196,77,255,0.2);flex-shrink:0;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.detail-portrait img{width:100%;display:block}
+.detail-info{flex:1;min-width:260px}
+.detail-info h2{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.detail-info .en-name{font-size:1rem;color:var(--text-dim);margin-top:2px}
+.detail-info .anime-tag{display:inline-block;margin-top:10px;padding:4px 14px;border-radius:12px;background:rgba(255,107,157,0.12);border:1px solid rgba(255,107,157,0.25);color:var(--pink);font-size:0.8rem}
+.detail-info .vibe-tag{display:inline-block;margin-top:8px;margin-left:6px;padding:4px 14px;border-radius:12px;background:var(--purple-dim);border:1px solid rgba(196,77,255,0.25);color:var(--purple);font-size:0.8rem;font-style:italic}
 
-  /* Detail */
-  .detail {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 16px;
-  }
-  @media (max-width: 900px) {
-    .detail { grid-template-columns: 1fr; }
-  }
-  .panel {
-    background: #12182a;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-  .panel-head {
-    padding: 12px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    font-size: 13px;
-    color: #b8c0e8;
-    background: rgba(255,255,255,0.03);
-  }
-  .portrait-box img {
-    width: 100%;
-    display: block;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    cursor: zoom-in;
-  }
-  .meta {
-    padding: 14px;
-  }
-  .meta h2 {
-    margin-bottom: 6px;
-    font-size: 26px;
-  }
-  .meta .sub { color: #9ea8d5; font-size: 13px; margin-bottom: 6px; }
-  .meta .desc { color: #bfc8f5; font-size: 13px; line-height: 1.7; }
+/* Feature Table */
+.feat-table{margin-top:20px;width:100%;font-size:0.85rem}
+.feat-table tr{border-bottom:1px solid rgba(255,255,255,0.04)}
+.feat-table td{padding:8px 0}
+.feat-table td:first-child{color:var(--purple);font-weight:600;width:60px;text-transform:uppercase;font-size:0.72rem;letter-spacing:0.08em;vertical-align:top;padding-top:10px}
+.feat-table td:last-child{color:var(--text);line-height:1.5}
 
-  .scene-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 12px;
-  }
-  @media (max-width: 900px) {
-    .scene-grid { grid-template-columns: 1fr; }
-  }
-  .scene-card {
-    background: #0e1425;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .scene-card img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    display: block;
-    cursor: zoom-in;
-  }
-  .scene-info { padding: 10px; }
-  .scene-info .sname { font-size: 14px; font-weight: 700; color: #f4f6ff; }
-  .scene-info .sdesc { font-size: 12px; color: #a9b2dc; margin-top: 4px; line-height: 1.6; }
+/* Scene Section */
+.scene-title{font-size:1.5rem;font-weight:700;margin:40px 0 24px;position:relative;padding-left:18px}
+.scene-title::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:4px;border-radius:2px;background:linear-gradient(to bottom,var(--purple),var(--pink))}
+.scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin-bottom:40px}
+.scene-card{background:var(--bg-card);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,0.06);transition:border-color 0.3s}
+.scene-card:hover{border-color:rgba(196,77,255,0.25)}
+.scene-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;cursor:pointer;transition:transform 0.4s}
+.scene-card:hover img{transform:scale(1.02)}
+.scene-meta{padding:16px 18px}
+.scene-label{font-size:0.95rem;font-weight:600;display:flex;align-items:center;gap:8px}
+.scene-label .icon{font-size:1.1rem}
+.scene-prompt-toggle{margin-top:10px;color:var(--purple);font-size:0.78rem;cursor:pointer;display:flex;align-items:center;gap:4px;transition:color 0.2s;user-select:none}
+.scene-prompt-toggle:hover{color:var(--pink)}
+.scene-prompt{display:none;margin-top:10px;padding:12px;background:rgba(0,0,0,0.3);border-radius:10px;font-size:0.75rem;line-height:1.65;color:var(--text-dim);word-break:break-word;border:1px solid rgba(255,255,255,0.04);max-height:200px;overflow-y:auto}
+.scene-prompt.open{display:block}
 
-  .hint {
-    margin-top: 12px;
-    color: #9ea8d5;
-    font-size: 12px;
-    line-height: 1.7;
-    padding: 10px 12px;
-    border: 1px dashed rgba(255,255,255,0.18);
-    border-radius: 10px;
-  }
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 80px rgba(0,0,0,0.6)}
+.lightbox-close{position:absolute;top:20px;right:24px;color:#fff;font-size:1.8rem;cursor:pointer;opacity:0.6;transition:opacity 0.2s;z-index:501}
+.lightbox-close:hover{opacity:1}
 
-  .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    background: rgba(0,0,0,0.92);
-    align-items: center;
-    justify-content: center;
-  }
-  .lightbox.active { display: flex; }
-  .lightbox img {
-    max-width: 92vw;
-    max-height: 92vh;
-    border-radius: 10px;
-    box-shadow: 0 0 40px rgba(180, 127, 255, 0.3);
-  }
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:1.8rem}
+  .grid{grid-template-columns:repeat(2,1fr);gap:14px;padding:0 14px 60px}
+  .detail-header{flex-direction:column}
+  .detail-portrait{width:100%;max-width:360px}
+  .scene-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .grid{grid-template-columns:1fr}
+}
 
-  .empty {
-    text-align: center;
-    color: #a4add7;
-    padding: 30px;
-  }
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(196,77,255,0.25);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(196,77,255,0.4)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeUp 0.5s ease both}
+.card:nth-child(2){animation-delay:0.05s}.card:nth-child(3){animation-delay:0.1s}
+.card:nth-child(4){animation-delay:0.15s}.card:nth-child(5){animation-delay:0.2s}
+.card:nth-child(6){animation-delay:0.25s}.card:nth-child(7){animation-delay:0.3s}
+.card:nth-child(8){animation-delay:0.35s}.card:nth-child(9){animation-delay:0.4s}
+.card:nth-child(10){animation-delay:0.45s}
 </style>
 </head>
 <body>
-  <div class="topbar">
-    <a class="btn" href="../../index.html">← 返回写真馆</a>
-    <button class="btn" id="backListBtn" style="display:none;">← 返回TOP10列表</button>
-    <div class="title" id="pageTitle">TOP10角色一致性验证馆</div>
+
+<nav class="top-nav">
+  <a href="../../index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    Nami Gallery
+  </a>
+  <span class="sep">|</span>
+  <span class="title">TOP 10 Anime Girl Portraits</span>
+  <a href="#" class="nav-back" id="navBack" onclick="showGrid();return false;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Gallery
+  </a>
+</nav>
+
+<!-- Home Grid View -->
+<div id="homeView">
+  <div class="hero">
+    <h1>TOP 10 Anime Girl Portraits</h1>
+    <p class="sub">Pure <em>visual-feature-driven</em> generation &mdash; no character names in prompts<br>
+    Powered by MiniMax image-01 &middot; 10 characters &times; 4 images each</p>
+    <span class="badge">CONSISTENCY TEST &middot; 40 IMAGES</span>
   </div>
+  <div class="grid" id="grid"></div>
+</div>
 
-  <section class="hero">
-    <h1>TOP 10 角色一致性验证</h1>
-    <p>
-      第一层是角色形象图（Identity Portrait），用于锚定“她是谁”；
-      第二层是3个验证场景（Cafe / Rainy Street / Rooftop），用于检查“换场景后还是不是她”。
-      点击首页角色卡片进入二级详情页查看场景图。
-    </p>
-    <div class="stats">
-      <div class="stat"><div class="n">10</div><div class="l">角色</div></div>
-      <div class="stat"><div class="n">40</div><div class="l">总图数</div></div>
-      <div class="stat"><div class="n">10 + 30</div><div class="l">形象图 + 场景图</div></div>
-      <div class="stat"><div class="n">100%</div><div class="l">场景图完成率</div></div>
-    </div>
-  </section>
+<!-- Detail View -->
+<div class="detail" id="detailView"></div>
 
-  <main class="wrap" id="app"></main>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
-  <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
-    <img id="lightboxImg" src="" alt="preview" />
-  </div>
-
+<script src="data.js"></script>
 <script>
-const SCENES = {
-  "a-cafe": { label: "Scene A · Cafe Afternoon", desc: "暖色室内+近景，测试五官与发型稳定性" },
-  "b-rain": { label: "Scene B · Rainy Street", desc: "冷色雨夜+全身，测试体型与气质保持" },
-  "c-rooftop": { label: "Scene C · Rooftop Sunset", desc: "夕阳风吹场景，测试神态与氛围一致性" }
-};
+const grid = document.getElementById('grid');
+const homeView = document.getElementById('homeView');
+const detailView = document.getElementById('detailView');
+const navBack = document.getElementById('navBack');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
 
-const CHARS = [
-  { id: "01", cn: "樱岛麻衣", en: "Mai Sakurajima", anime: "青春猪头少年不会梦到兔女郎学姐", portrait: "01-mai-sakurajima.png", tags: ["黑长直", "紫蓝瞳", "清冷"], anchor: "黑长直 + 紫蓝瞳 + 冷静眼神" },
-  { id: "02", cn: "亚丝娜", en: "Asuna Yuuki", anime: "刀剑神域 SAO", portrait: "02-asuna-yuuki.png", tags: ["栗橙长发", "骑士感", "温柔坚毅"], anchor: "栗橙长发 + 亲和力表情" },
-  { id: "03", cn: "薇尔莉特", en: "Violet Evergarden", anime: "紫罗兰永恒花园", portrait: "03-violet-evergarden.png", tags: ["金发", "蓝瞳", "优雅"], anchor: "金发低马尾 + 宝蓝瞳 + 人偶感" },
-  { id: "04", cn: "零二", en: "Zero Two", anime: "DARLING in the FRANXX", portrait: "04-zero-two.png", tags: ["粉发", "红角", "野性"], anchor: "粉发 + 红角 + 俏皮侵略感" },
-  { id: "05", cn: "蕾姆", en: "Rem", anime: "Re:从零开始的异世界生活", portrait: "05-rem.png", tags: ["天蓝短发", "遮眼", "温柔"], anchor: "天蓝短发遮眼 + 软萌表情" },
-  { id: "06", cn: "御坂美琴", en: "Mikoto Misaka", anime: "某科学的超电磁炮", portrait: "06-mikoto-misaka.png", tags: ["栗色短发", "元气", "运动感"], anchor: "栗色短发 + 活力感" },
-  { id: "07", cn: "牧濑红莉栖", en: "Kurisu Makise", anime: "命运石之门", portrait: "07-kurisu-makise.png", tags: ["赤栗长发", "呆毛", "知性"], anchor: "赤栗发 + 呆毛 + 理性傲娇" },
-  { id: "08", cn: "灶门祢豆子", en: "Nezuko Kamado", anime: "鬼灭之刃", portrait: "08-nezuko-kamado.png", tags: ["黑橙渐变", "粉瞳", "柔和"], anchor: "黑橙渐变发 + 粉瞳 + 安静气质" },
-  { id: "09", cn: "芙莉莲", en: "Frieren", anime: "葬送的芙莉莲", portrait: "09-frieren.png", tags: ["银白发", "尖耳", "空灵"], anchor: "银白长发 + 绿瞳 + 精灵耳" },
-  { id: "10", cn: "女版五条悟", en: "Gojo (Female)", anime: "咒术回战（性转）", portrait: "10-gojo-satoru-female-ver..png", tags: ["白炸毛", "冰蓝瞳", "强气"], anchor: "白发 + 冰蓝瞳 + 绝对自信" }
-];
+// Build grid
+CHARACTERS.forEach((c, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.onclick = () => showDetail(c.id);
+  card.innerHTML = `
+    <img class="card-img" src="${c.portrait}" alt="${c.nameCn}" loading="lazy">
+    <span class="card-rank">#${String(i+1).padStart(2,'0')}</span>
+    <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="card-overlay">
+      <div class="card-name">${c.nameCn}</div>
+      <div class="card-name-en">${c.nameEn}</div>
+      <div class="card-anime">${c.anime}</div>
+      <div class="card-vibe">${c.vibe}</div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
 
-function sceneFile(charId, sceneId) {
-  return `${charId}-${sceneId}.png`;
-}
-
-function openLightbox(src) {
-  const box = document.getElementById("lightbox");
-  document.getElementById("lightboxImg").src = src;
-  box.classList.add("active");
-}
-
-function renderHome() {
-  document.getElementById("backListBtn").style.display = "none";
-  document.getElementById("pageTitle").textContent = "TOP10角色一致性验证馆";
-
-  const cards = CHARS.map(c => `
-    <article class="card">
-      <img src="./${c.portrait}" alt="${c.cn}" loading="lazy" onclick="openLightbox('./${c.portrait}')">
-      <div class="card-body">
-        <div class="name-row"><div class="name-cn">${c.cn}</div><div class="name-en">${c.en}</div></div>
-        <div class="anime">${c.anime}</div>
-        <div class="tags">${c.tags.map(t => `<span class='tag'>${t}</span>`).join("")}</div>
-        <button class="btn" style="width:100%;" onclick="goDetail('${c.id}')">查看场景验证页</button>
-      </div>
-    </article>
-  `).join("");
-
-  document.getElementById("app").innerHTML = `<section class="grid">${cards}</section>`;
-}
-
-function renderDetail(id) {
-  const c = CHARS.find(x => x.id === id);
-  if (!c) {
-    document.getElementById("app").innerHTML = `<div class='empty'>角色不存在</div>`;
-    return;
-  }
-
-  document.getElementById("backListBtn").style.display = "inline-block";
-  document.getElementById("pageTitle").textContent = `${c.cn} · 场景一致性验证`;
-
-  const sceneCards = Object.keys(SCENES).map(sceneId => {
-    const s = SCENES[sceneId];
-    const file = sceneFile(c.id, sceneId);
+function showDetail(id) {
+  const c = CHARACTERS.find(x => x.id === id);
+  if (!c) return;
+  
+  const featRows = Object.entries(c.features).map(([k,v]) => 
+    `<tr><td>${k}</td><td>${v}</td></tr>`
+  ).join('');
+  
+  const sceneCards = c.scenes.map((s, i) => {
+    const meta = SCENE_LABELS[s.id] || { label: s.label, icon: '', color: '#888' };
     return `
       <div class="scene-card">
-        <img src="./${file}" alt="${c.cn}-${sceneId}" loading="lazy" onclick="openLightbox('./${file}')">
-        <div class="scene-info">
-          <div class="sname">${s.label}</div>
-          <div class="sdesc">${s.desc}</div>
+        <img src="${s.file}" alt="${s.label}" loading="lazy" onclick="openLightbox('${s.file}')">
+        <div class="scene-meta">
+          <div class="scene-label">
+            <span class="icon">${meta.icon}</span>
+            <span>${meta.label}</span>
+          </div>
+          <div class="scene-prompt-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.arrow').textContent=this.nextElementSibling.classList.contains('open')?'\u25B2':'\u25BC'">
+            <span class="arrow">\u25BC</span>&nbsp;View Full Prompt
+          </div>
+          <div class="scene-prompt">${s.prompt}</div>
         </div>
       </div>
     `;
-  }).join("");
-
-  document.getElementById("app").innerHTML = `
-    <section class="detail">
-      <div class="panel portrait-box">
-        <div class="panel-head">Identity Portrait（形象锚点图）</div>
-        <img src="./${c.portrait}" alt="${c.cn}" onclick="openLightbox('./${c.portrait}')">
+  }).join('');
+  
+  detailView.innerHTML = `
+    <div class="detail-header">
+      <div class="detail-portrait">
+        <img src="${c.portrait}" alt="${c.nameCn}" onclick="openLightbox('${c.portrait}')">
       </div>
-
-      <div class="panel">
-        <div class="panel-head">Consistency Scenes（跨场景一致性）</div>
-        <div class="meta">
-          <h2>${c.cn}</h2>
-          <div class="sub">${c.en} · ${c.anime}</div>
-          <div class="desc">核心身份锚点：${c.anchor}</div>
-          <div class="hint">
-            观察建议：先看左侧形象图，再看右侧3个场景，重点看发型/发色、眼神、脸型与整体气质是否保持同一角色。
-          </div>
-        </div>
-        <div class="scene-grid">${sceneCards}</div>
+      <div class="detail-info">
+        <h2>${c.nameCn}</h2>
+        <div class="en-name">${c.nameEn}</div>
+        <span class="anime-tag">${c.anime}</span>
+        <span class="vibe-tag">${c.vibe}</span>
+        <table class="feat-table"><tbody>${featRows}</tbody></table>
       </div>
-    </section>
+    </div>
+    <div class="scene-title">Scene Consistency Test</div>
+    <div class="scene-grid">${sceneCards}</div>
   `;
+  
+  homeView.style.display = 'none';
+  detailView.classList.add('active');
+  navBack.style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  location.hash = 'char-' + id;
 }
 
-function goDetail(id) {
-  location.hash = `char-${id}`;
+function showGrid() {
+  homeView.style.display = '';
+  detailView.classList.remove('active');
+  detailView.innerHTML = '';
+  navBack.style.display = 'none';
+  location.hash = '';
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
-function router() {
-  const hash = location.hash || "";
-  if (hash.startsWith("#char-")) {
-    renderDetail(hash.replace("#char-", ""));
-  } else {
-    renderHome();
+function openLightbox(src) {
+  lightboxImg.src = src;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (lightbox.classList.contains('open')) closeLightbox();
+    else if (detailView.classList.contains('active')) showGrid();
   }
-}
-
-document.getElementById("backListBtn").addEventListener("click", () => {
-  location.hash = "";
 });
 
-window.addEventListener("hashchange", router);
-router();
+// Handle hash on load
+if (location.hash.startsWith('#char-')) {
+  const id = location.hash.replace('#char-', '');
+  showDetail(id);
+}
 </script>
 </body>
 </html>
