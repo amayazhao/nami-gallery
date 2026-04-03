@@ -78,8 +78,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .scene-label .icon{font-size:1.1rem}
 .scene-prompt-toggle{margin-top:10px;color:var(--purple);font-size:0.78rem;cursor:pointer;display:flex;align-items:center;gap:4px;transition:color 0.2s;user-select:none}
 .scene-prompt-toggle:hover{color:var(--pink)}
-.scene-prompt{display:none;margin-top:10px;padding:12px;background:rgba(0,0,0,0.3);border-radius:10px;font-size:0.75rem;line-height:1.65;color:var(--text-dim);word-break:break-word;border:1px solid rgba(255,255,255,0.04);max-height:200px;overflow-y:auto}
-.scene-prompt.open{display:block}
+.scene-prompt{display:block;margin-top:10px;padding:12px;background:rgba(0,0,0,0.3);border-radius:10px;font-size:0.75rem;line-height:1.65;color:var(--text-dim);word-break:break-word;border:1px solid rgba(255,255,255,0.04);max-height:200px;overflow-y:auto}
+.scene-prompt.closed{display:none}
 
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;cursor:zoom-out}
@@ -197,8 +197,8 @@ function showDetail(id) {
             <span class="icon">${meta.icon}</span>
             <span>${meta.label}</span>
           </div>
-          <div class="scene-prompt-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.arrow').textContent=this.nextElementSibling.classList.contains('open')?'\u25B2':'\u25BC'">
-            <span class="arrow">\u25BC</span>&nbsp;View Full Prompt
+          <div class="scene-prompt-toggle" onclick="this.nextElementSibling.classList.toggle('closed');this.querySelector('.arrow').textContent=this.nextElementSibling.classList.contains('closed')?'\u25BC':'\u25B2'">
+            <span class="arrow">\u25B2</span>&nbsp;Prompt
           </div>
           <div class="scene-prompt">${s.prompt}</div>
         </div>
