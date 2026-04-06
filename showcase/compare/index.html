@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参考图对比：无Ref vs V2 Ref</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a12;--purple:#c44dff;--pink:#ff6b9d;--cyan:#00d4ff;--text:#e8e6f0;--dim:#888;--card:rgba(18,18,30,0.85);--r:14px;--red:#ff4757;--green:#2ed573}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(196,77,255,0.06),transparent 60%);pointer-events:none;z-index:0}
+
+.header{text-align:center;padding:40px 24px 20px;position:relative;z-index:1}
+.header h1{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:var(--dim);margin-top:8px;font-size:0.85rem}
+.legend{display:flex;gap:20px;justify-content:center;margin-top:14px}
+.legend span{font-size:0.78rem;display:flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dot-old{background:var(--red)}
+.dot-new{background:var(--green)}
+
+.grid{max-width:1400px;margin:0 auto;padding:20px;position:relative;z-index:1}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
+.row-header{grid-column:1/-1;padding:12px 16px;background:rgba(196,77,255,0.08);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px}
+.row-header .num{background:var(--purple);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700}
+.row-header .name{font-weight:700;font-size:0.9rem}
+.row-header .tag{font-size:0.65rem;background:rgba(255,255,255,0.08);padding:2px 8px;border-radius:6px;color:var(--dim)}
+
+.col{position:relative}
+.col img{width:100%;display:block;cursor:pointer}
+.col-label{position:absolute;top:8px;left:8px;padding:3px 10px;border-radius:8px;font-size:0.65rem;font-weight:700;backdrop-filter:blur(8px)}
+.label-old{background:rgba(255,71,87,0.7);color:#fff}
+.label-new{background:rgba(46,213,115,0.7);color:#fff}
+
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:90vh;border-radius:12px}
+
+@media(max-width:768px){.row{grid-template-columns:1fr}.row-header{grid-column:1}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔍 参考图对比</h1>
+  <p>左：无参考图（旧） vs 右：V2参考图（新） · 相同Prompt · 19组对比</p>
+  <div class="legend">
+    <span><span class="dot dot-old"></span> 无参考图（纯Prompt）</span>
+    <span><span class="dot dot-new"></span> V2侧身照参考图（image_file URL）</span>
+  </div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="lightbox" id="lb" onclick="this.classList.remove('open');document.body.style.overflow=''">
+  <img id="lbImg" src="">
+</div>
+
+<script>
+const ITEMS = [
+  {name:"avatar-cute-v2", label:"可爱版头像", tag:"头像"},
+  {name:"avatar-pro-v2", label:"专业版头像", tag:"头像"},
+  {name:"avatar-charm-v2", label:"魅力版头像", tag:"头像"},
+  {name:"scene-cafe-date", label:"咖啡馆约会", tag:"约会"},
+  {name:"scene-rain-umbrella", label:"雨夜撑伞", tag:"浪漫"},
+  {name:"scene-park-spring", label:"樱花漫步", tag:"浪漫"},
+  {name:"scene-library-study", label:"图书馆知性", tag:"日常"},
+  {name:"scene-nightmarket", label:"夜市棉花糖", tag:"约会"},
+  {name:"scene-office-secretary", label:"秘书模式", tag:"专业"},
+  {name:"scene-seaside-sunset", label:"海边夕阳", tag:"浪漫"},
+  {name:"scene-christmas-cozy", label:"圣诞壁炉", tag:"心动"},
+  {name:"cosplay-mai-sakurajima", label:"樱岛麻衣Cos", tag:"Cosplay"},
+  {name:"cosplay-hatsune-miku", label:"初音未来Cos", tag:"Cosplay"},
+  {name:"fitness-yoga", label:"瑜伽时光", tag:"健身"},
+  {name:"fitness-jogging", label:"晨跑活力", tag:"健身"},
+  {name:"music-headphones", label:"雨天听歌", tag:"心动"},
+  {name:"gaming-couch", label:"游戏时间", tag:"生活"},
+  {name:"baking-kitchen", label:"烘焙时光", tag:"日常"},
+  {name:"citynight-rooftop", label:"城市夜景", tag:"生活"},
+];
+
+const grid = document.getElementById('grid');
+ITEMS.forEach((item, i) => {
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = `
+    <div class="row-header">
+      <span class="num">${i+1}</span>
+      <span class="name">${item.label}</span>
+      <span class="tag">${item.tag}</span>
+    </div>
+    <div class="col" onclick="openLB('old/${item.name}.png')">
+      <span class="col-label label-old">无参考图</span>
+      <img src="old/${item.name}.png" loading="lazy" alt="old">
+    </div>
+    <div class="col" onclick="openLB('new/${item.name}.png')">
+      <span class="col-label label-new">V2参考图</span>
+      <img src="new/${item.name}.png" loading="lazy" alt="new">
+    </div>
+  `;
+  grid.appendChild(row);
+});
+
+function openLB(src){document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');document.body.style.overflow=''}});
+</script>
+</body>
+</html>
