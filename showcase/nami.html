@@ -51,9 +51,19 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tag-心动{background:rgba(196,77,255,0.12);color:var(--purple);border:1px solid rgba(196,77,255,0.25)}
 .tag-约会{background:rgba(0,212,255,0.12);color:var(--cyan);border:1px solid rgba(0,212,255,0.25)}
 .tag-Cosplay{background:rgba(80,227,194,0.12);color:#50e3c2;border:1px solid rgba(80,227,194,0.25)}
-.tag-封面{background:rgba(255,255,255,0.08);color:var(--text);border:1px solid rgba(255,255,255,0.15)}
-.card-title{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.tag-专业{background:rgba(100,149,237,0.12);color:#6495ed;border:1px solid rgba(100,149,237,0.25)}
+.tag-健身{background:rgba(255,200,50,0.12);color:#ffc832;border:1px solid rgba(255,200,50,0.25)}
+.tag-生活{background:rgba(150,180,255,0.12);color:#96b4ff;border:1px solid rgba(150,180,255,0.25)}
+.tag-头像{background:rgba(255,255,255,0.08);color:var(--text);border:1px solid rgba(255,255,255,0.15)}
+.prompt-toggle{font-size:0.65rem;color:var(--purple);cursor:pointer;margin-top:6px;opacity:0.7;transition:opacity 0.2s}
+.prompt-toggle:hover{opacity:1}
+.prompt-box{display:none;margin-top:6px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:8px 10px;font-size:0.65rem;font-family:Consolas,Monaco,monospace;color:rgba(255,255,255,0.5);line-height:1.5;word-break:break-all}
+.prompt-box.open{display:block}
+.card-title{font-size:1.05rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px}
 .card-desc{font-size:0.82rem;color:var(--dim);line-height:1.5}
+.ver-badge{font-size:0.6rem;padding:2px 6px;border-radius:6px;font-weight:700;letter-spacing:0.04em}
+.ver-V2{background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(196,77,255,0.15));color:var(--cyan);border:1px solid rgba(0,212,255,0.3)}
+.ver-V1{background:rgba(255,255,255,0.06);color:var(--dim);border:1px solid rgba(255,255,255,0.1)}
 
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;cursor:zoom-out}
@@ -92,7 +102,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <h1>娜美 Nami</h1>
   <p class="sub">
     一个由 <em>Character Sheet</em> 定义的AI数字人<br>
-    同一身份，跨越12+场景，保持一致性
+    同一身份，跨越22+场景，纯Prompt驱动角色一致性
   </p>
   <div class="id-card">
     <h3>🧬 Character Sheet（身份层）</h3>
@@ -157,12 +167,15 @@ function renderGrid() {
     const card = document.createElement('div');
     card.className = 'card';
     card.style.animationDelay = (i * 0.06) + 's';
+    const ver = s.version || 'V2';
+    const promptHtml = s.prompt ? `<div class="prompt-toggle" onclick="event.stopPropagation();this.nextElementSibling.classList.toggle('open')">▶ Show Prompt</div><div class="prompt-box">${s.prompt}</div>` : '';
     card.innerHTML = `
       <img src="${s.file}" alt="${s.title}" loading="lazy" onclick="openLB('${s.file}')">
       <div class="card-info">
         <span class="card-tag tag-${s.tag}">${s.tag}</span>
         <div class="card-title">${s.title}</div>
         <div class="card-desc">${s.desc}</div>
+        ${promptHtml}
       </div>
     `;
     grid.appendChild(card);
