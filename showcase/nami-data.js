@@ -66,6 +66,16 @@ const NAMI_GALLERY = {
     // 专业
     { file: "scene-office-secretary.png", title: "秘书模式", desc: "深灰西装+白衬衫+平板，落地窗城市", tag: "专业",
       prompt: "medium shot, modern glass office, charcoal pencil skirt suit with white blouse, holding tablet, composed professional smile, city skyline through floor-to-ceiling windows" },
+
+    // ── 混元 Demo — Hikari (另一个角色, 腾讯混元 3.0 引擎) ──
+    { file: "hikari-ref.png", title: "Hikari · 形象照", desc: "银白短发+紫色渐变+琥珀瞳+星星耳钉 — 混元3.0生成", tag: "混元Demo",
+      prompt: "beautiful anime girl with short silver-white hair with soft lavender tips, warm amber-golden eyes, small golden star-shaped ear stud, white silk blouse, gentle confident smile, white background, japanese anime illustration style, cel shading" },
+    { file: "hikari-cafe.png", title: "Hikari · 咖啡馆", desc: "奶色毛衣捧脸，暖阳午后 — 换角色换引擎，Skill同一套", tag: "混元Demo",
+      prompt: "short silver-white hair with lavender tips, amber-golden eyes, star earring, oversized cream cable-knit sweater, cozy cafe by window, resting chin on hand, bright excited smile, warm golden afternoon sunlight, anime illustration style, cel shading, medium shot" },
+    { file: "hikari-sakura.png", title: "Hikari · 樱花漫步", desc: "蓝裙+草帽+花瓣纷飞 — 同一Character Sheet不同场景", tag: "混元Demo",
+      prompt: "short silver-white hair with lavender tips, amber-golden eyes, star earring, light blue sundress with white cardigan, straw hat, cherry blossom park, petals floating, bright happy smile, warm spring sunlight, anime illustration style, cel shading, full body shot" },
+    { file: "hikari-night.png", title: "Hikari · 城市夜景", desc: "黑皮衣+霓虹灯 — 纯Prompt驱动的角色一致性", tag: "混元Demo",
+      prompt: "short silver-white hair with lavender tips, amber-golden eyes, star earring, black leather jacket over white tee and dark jeans, city rooftop at night, neon lights, mysterious confident smile, cinematic blue-purple atmosphere, anime illustration style, cel shading, full body shot" },
   ],
-  tags: ["全部", "头像", "日常", "约会", "浪漫", "心动", "Cosplay", "健身", "生活", "专业"]
+  tags: ["全部", "头像", "日常", "约会", "浪漫", "心动", "Cosplay", "健身", "生活", "专业", "混元Demo"]
 };
