@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参考图实验：无Ref vs 正面Ref vs 侧面Ref</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a12;--purple:#c44dff;--pink:#ff6b9d;--cyan:#00d4ff;--text:#e8e6f0;--dim:#888;--card:rgba(18,18,30,0.85);--r:14px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif}
+
+.header{text-align:center;padding:40px 20px 20px;position:relative;z-index:1}
+.header h1{font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:var(--dim);margin-top:8px;font-size:0.82rem;line-height:1.6}
+
+.refs{display:flex;gap:16px;justify-content:center;margin:20px auto;max-width:600px;flex-wrap:wrap}
+.ref-card{text-align:center;flex:1;min-width:120px}
+.ref-card img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.1)}
+.ref-card .label{font-size:0.7rem;margin-top:6px;color:var(--dim)}
+
+.note{max-width:700px;margin:10px auto 20px;background:var(--card);border:1px solid rgba(255,165,2,0.2);border-radius:10px;padding:12px 16px;font-size:0.78rem;color:var(--dim);line-height:1.5}
+.note b{color:#ffa502}
+
+.grid{max-width:1400px;margin:0 auto;padding:16px;position:relative;z-index:1}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:24px;background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
+.row-header{grid-column:1/-1;padding:10px 14px;background:rgba(196,77,255,0.08);border-bottom:1px solid rgba(255,255,255,0.06);font-weight:700;font-size:0.9rem;display:flex;align-items:center;gap:8px}
+.col{position:relative;overflow:hidden}
+.col img{width:100%;display:block;cursor:pointer;transition:transform 0.3s}
+.col:hover img{transform:scale(1.02)}
+.col-label{position:absolute;top:6px;left:6px;padding:2px 8px;border-radius:6px;font-size:0.6rem;font-weight:700;backdrop-filter:blur(8px)}
+.label-none{background:rgba(255,71,87,0.75);color:#fff}
+.label-front{background:rgba(46,213,115,0.75);color:#fff}
+.label-side{background:rgba(0,212,255,0.75);color:#fff}
+
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:94vw;max-height:92vh;border-radius:12px}
+@media(max-width:900px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🧪 参考图实验对比</h1>
+  <p>同一Prompt × 3种参考图配置 = 哪种最稳定？<br>3个场景（咖啡馆/雨夜/圣诞）× 3种配置 = 9张</p>
+</div>
+
+<div class="refs">
+  <div class="ref-card">
+    <img src="../compare/old/scene-cafe-date.png" alt="no ref">
+    <div class="label">🔴 无参考图<br>纯Prompt驱动</div>
+  </div>
+  <div class="ref-card">
+    <img src="../../avatar.png" alt="front ref" style="border-color:rgba(46,213,115,0.5)">
+    <div class="label">🟢 正面参考图<br>ref-A confident</div>
+  </div>
+  <div class="ref-card">
+    <img src="../../ref-side.png" alt="side ref" style="border-color:rgba(0,212,255,0.5)">
+    <div class="label">🔵 侧面参考图<br>基于正面ref生成</div>
+  </div>
+</div>
+
+<div class="note">
+  <b>⚠️ 发现：</b>MiniMax subject_reference 限制只能传<b>1张</b>参考图（传2张报错 "image_reference must be one"），所以多张参考图方案不可行。
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="lightbox" id="lb" onclick="this.classList.remove('open');document.body.style.overflow=''">
+  <img id="lbImg" src="">
+</div>
+
+<script>
+const SCENES = [
+  {id:"cafe", label:"☕ 咖啡馆约会"},
+  {id:"rain", label:"🌧️ 雨夜撑伞"},
+  {id:"xmas", label:"🎄 圣诞壁炉"},
+];
+
+const BASE = "../../sessions-experiment/";
+const grid = document.getElementById('grid');
+
+SCENES.forEach(s => {
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = `
+    <div class="row-header">${s.label}</div>
+    <div class="col" onclick="openLB('${s.id}-no-ref.png')">
+      <span class="col-label label-none">无参考图</span>
+      <img src="${s.id}-no-ref.png" loading="lazy">
+    </div>
+    <div class="col" onclick="openLB('${s.id}-front-ref.png')">
+      <span class="col-label label-front">正面Ref</span>
+      <img src="${s.id}-front-ref.png" loading="lazy">
+    </div>
+    <div class="col" onclick="openLB('${s.id}-side-ref.png')">
+      <span class="col-label label-side">侧面Ref</span>
+      <img src="${s.id}-side-ref.png" loading="lazy">
+    </div>
+  `;
+  grid.appendChild(row);
+});
+
+function openLB(src){document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');document.body.style.overflow=''}});
+</script>
+</body>
+</html>
