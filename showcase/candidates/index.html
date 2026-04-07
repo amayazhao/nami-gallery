@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>娜美 Showcase 选图台 — 纯Prompt最终版</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a12;--purple:#c44dff;--pink:#ff6b9d;--cyan:#00d4ff;--text:#e8e6f0;--dim:#888;--card:rgba(18,18,30,0.85);--r:16px;--green:#50e3c2}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;padding:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(196,77,255,0.08),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(255,107,157,0.06),transparent 60%);pointer-events:none;z-index:0}
+
+.header{text-align:center;padding:80px 24px 20px;position:relative;z-index:1}
+.header h1{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header p{color:var(--dim);margin-top:10px;font-size:0.88rem;line-height:1.6}
+.header .badge{display:inline-block;margin-top:12px;background:rgba(46,213,115,0.12);border:1px solid rgba(46,213,115,0.3);color:var(--green);padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:600}
+
+.cat-hdr{padding:28px 28px 8px;max-width:1300px;margin:0 auto;position:relative;z-index:1}
+.cat-hdr h2{font-size:1.15rem;color:var(--purple);font-weight:700;display:flex;align-items:center;gap:8px}
+.cat-hdr h2 .cnt{font-size:0.7rem;background:rgba(196,77,255,0.15);padding:2px 8px;border-radius:8px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px;padding:10px 28px 18px;max-width:1300px;margin:0 auto;position:relative;z-index:1}
+.card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,0.06);transition:all 0.3s}
+.card:hover{border-color:rgba(196,77,255,0.3);box-shadow:0 12px 40px rgba(196,77,255,0.1)}
+.card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;cursor:pointer;transition:transform 0.4s}
+.card:hover img{transform:scale(1.02)}
+.card-body{padding:14px 16px}
+.card-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.card-num{background:var(--purple);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700}
+.card-title{font-weight:700;font-size:0.92rem}
+.card-tag{font-size:0.6rem;padding:2px 8px;border-radius:6px;font-weight:600}
+.tag-头像{background:rgba(255,255,255,0.08);color:var(--text);border:1px solid rgba(255,255,255,0.12)}
+.tag-日常{background:rgba(245,166,35,0.12);color:#f5a623;border:1px solid rgba(245,166,35,0.2)}
+.tag-约会{background:rgba(0,212,255,0.12);color:var(--cyan);border:1px solid rgba(0,212,255,0.2)}
+.tag-浪漫{background:rgba(255,107,157,0.12);color:var(--pink);border:1px solid rgba(255,107,157,0.2)}
+.tag-心动{background:rgba(196,77,255,0.12);color:var(--purple);border:1px solid rgba(196,77,255,0.2)}
+.tag-Cosplay{background:rgba(80,227,194,0.12);color:var(--green);border:1px solid rgba(80,227,194,0.2)}
+.tag-健身{background:rgba(255,200,50,0.12);color:#ffc832;border:1px solid rgba(255,200,50,0.2)}
+.tag-生活{background:rgba(150,180,255,0.12);color:#96b4ff;border:1px solid rgba(150,180,255,0.2)}
+.tag-专业{background:rgba(100,149,237,0.12);color:#6495ed;border:1px solid rgba(100,149,237,0.2)}
+.card-desc{font-size:0.78rem;color:var(--dim);margin-bottom:8px;line-height:1.4}
+.prompt-lbl{font-size:0.6rem;color:var(--purple);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px}
+.prompt-box{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:8px 10px;font-size:0.68rem;font-family:Consolas,Monaco,monospace;color:rgba(255,255,255,0.55);line-height:1.5;max-height:100px;overflow-y:auto;word-break:break-all}
+
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:90vh;border-radius:12px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeUp 0.4s ease both}
+@media(max-width:768px){.grid{grid-template-columns:1fr;padding:10px 14px}}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:rgba(196,77,255,0.25);border-radius:3px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📸 Showcase 选图台</h1>
+  <p>全部无参考图（纯Prompt）· MiniMax image-01 · 每张附完整Prompt<br>主人挑选后告诉我编号，我来更新最终参赛页面</p>
+  <span class="badge">✅ 纯Prompt最终版 · 24张候选</span>
+</div>
+
+<div id="content"></div>
+
+<div class="lightbox" id="lb" onclick="this.classList.remove('open');document.body.style.overflow=''">
+  <img id="lbImg" src="">
+</div>
+
+<script>
+const NAMI = "beautiful mature anime girl with long flowing navy blue hair, bright ocean-blue eyes, orange flower hairpin on the right side, fair skin, slight blush, 165cm healthy well-proportioned feminine figure with soft natural curves, mature elegant style";
+
+const DATA = [
+  {cat:"🖼️ 头像", tag:"头像", items:[
+    {n:1, file:"avatar-cute-v2.png", title:"可爱版", desc:"暖色针织开衫+白T，甜笑看你",
+     prompt:`close-up portrait of ${NAMI}, wearing a cream knit cardigan over white t-shirt, warm golden hour sunlight, tilting head with a bright cheerful smile and sparkling eyes looking at the viewer, soft bokeh background of a cozy room with warm tones, cute playful vibe, anime illustration style, masterpiece quality`},
+    {n:2, file:"avatar-pro-v2.png", title:"专业版", desc:"深蓝西装白衬衫，干练自信",
+     prompt:`close-up portrait of ${NAMI}, wearing a tailored navy blazer with white silk blouse, hair neatly styled, confident knowing smile looking at the viewer, professional office background with soft diffused lighting, elegant executive secretary vibe, cinematic lighting, anime illustration style, masterpiece quality`},
+    {n:3, file:"avatar-charm-v2.png", title:"魅力版", desc:"酒红露肩毛衣，烛光深情",
+     prompt:`close-up portrait of ${NAMI}, wearing an off-shoulder wine red cashmere sweater, hair slightly tousled, gazing at the viewer with warm tender eyes and a gentle mysterious half-smile, soft candlelight warm tones, evening atmosphere, cinematic depth of field, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"🏠 日常生活", tag:"日常", items:[
+    {n:4, file:"bookstore-afternoon.png", title:"书店午后 ⭐", desc:"奶色针织开衫+白T，书店抬头甜笑",
+     prompt:`full body shot, ${NAMI}, cream knit cardigan over white crop top, denim mini skirt, standing in warm sunlit bookstore, looking up at viewer with bright cheerful smile, golden afternoon light, books on shelves, anime illustration style, masterpiece quality`},
+    {n:5, file:"cover-daily.png", title:"居家元气", desc:"米色开衫+牛仔短裙，书架前活力一笑",
+     prompt:`medium shot, ${NAMI}, cream cardigan over white t-shirt, denim skirt, standing by bookshelf, cheerful smile looking at viewer, warm indoor sunlight, anime illustration style, masterpiece quality`},
+    {n:6, file:"sunday-morning.png", title:"周日清晨", desc:"露肩毛衣+黑紧身裤，窗边捧咖啡",
+     prompt:`medium shot, ${NAMI}, off-shoulder beige knit sweater, black leggings, sitting by window holding coffee cup, peaceful morning sunlight, warm cozy atmosphere, anime illustration style, masterpiece quality`},
+    {n:7, file:"scene-library-study.png", title:"图书馆知性", desc:"圆框眼镜+奶白毛衣，从书中惊喜抬头",
+     prompt:`medium shot of ${NAMI}, sitting at a wooden desk in a grand old library, wearing round glasses and a cream cable-knit sweater, looking up from a thick book at the viewer with a surprised but pleased expression, stacks of books, warm golden reading lamp light, intellectual cozy atmosphere, anime illustration style, masterpiece quality`},
+    {n:8, file:"baking-kitchen.png", title:"烘焙时光", desc:"粉色围裙+白T，脸颊沾面粉举小蛋糕",
+     prompt:`medium shot of ${NAMI}, in a bright modern kitchen, wearing a light pink apron over a white t-shirt, flour dusted on her cheek, holding up a freshly decorated cupcake with both hands, proud delighted smile, mixing bowls on counter, warm kitchen lighting, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"☕ 约会", tag:"约会", items:[
+    {n:9, file:"scene-cafe-date.png", title:"咖啡馆约会", desc:"白毛衣捧脸，暖阳+拿铁+温柔对视",
+     prompt:`medium shot of ${NAMI}, sitting in a cozy Japanese-style cafe by the window, wearing a soft white turtleneck sweater, resting chin on one hand, gazing at the viewer with a warm knowing smile, latte art coffee on the wooden table, afternoon golden sunlight, green plants, cinematic warm tones, anime illustration style, masterpiece quality`},
+    {n:10, file:"scene-nightmarket.png", title:"夜市棉花糖", desc:"牛仔外套+条纹T，举棉花糖兴奋比耶",
+     prompt:`medium shot of ${NAMI}, at a lively Asian night market, wearing a casual denim jacket over a striped t-shirt, holding cotton candy in one hand, looking at the viewer with an excited playful grin, colorful lanterns and food stall lights in bokeh background, warm festive atmosphere, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"🌸 浪漫", tag:"浪漫", items:[
+    {n:11, file:"scene-park-spring.png", title:"樱花漫步", desc:"蓝裙+白开衫+草帽，花瓣纷飞回眸",
+     prompt:`full body shot of ${NAMI}, walking in a cherry blossom park in spring, wearing a light blue sundress with a white cardigan, holding a straw hat with one hand, hair and petals blowing in gentle breeze, turning back to look at the viewer with a bright happy smile, pink and white petals floating, warm spring sunlight, showing shapely legs, anime illustration style, masterpiece quality`},
+    {n:12, file:"scene-rain-umbrella.png", title:"雨夜撑伞", desc:"米色风衣+透明伞，雨中街头回头微笑",
+     prompt:`full body shot of ${NAMI}, standing under a transparent umbrella on a rainy city street at twilight, wearing a fitted beige trench coat over a navy dress, looking over her shoulder at the viewer with a soft smile, wet pavement reflecting neon lights, rain droplets on umbrella, cinematic blue-purple atmosphere, showing shapely legs in ankle boots, anime illustration style, masterpiece quality`},
+    {n:13, file:"scene-seaside-sunset.png", title:"海边夕阳", desc:"白裙赤脚踏浪，金色余晖中撩发",
+     prompt:`full body shot of ${NAMI}, standing barefoot on a sandy beach at golden hour, wearing a flowing white linen dress that catches the sea breeze, one hand brushing hair behind ear, gazing at the viewer with a peaceful content smile, orange-pink sunset sky reflected on calm water, gentle waves at her feet, warm golden light, anime illustration style, masterpiece quality`},
+    {n:14, file:"rooftop-sunset.png", title:"天台夕阳", desc:"白色吊带裙，城市天际线前长发飘逸",
+     prompt:`full body shot, ${NAMI}, white spaghetti strap flowing dress, standing on rooftop at golden hour, hair and dress blowing in wind, leaning on railing, city skyline in golden sunset, peaceful confident smile at viewer, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"💜 心动", tag:"心动", items:[
+    {n:15, file:"scene-christmas-cozy.png", title:"圣诞壁炉", desc:"红色oversized毛衣+热可可，壁炉旁",
+     prompt:`medium shot of ${NAMI}, sitting on a fluffy rug by a fireplace on Christmas Eve, wearing an oversized red knit sweater that drapes over her feminine frame, holding a mug of hot cocoa with both hands, soft grateful smile, Christmas tree with fairy lights in background, cozy warm firelight, festive intimate atmosphere, anime illustration style, masterpiece quality`},
+    {n:16, file:"bonus-moment.png", title:"晚间小酌", desc:"衬衫裙+红酒杯，暖色灯光成熟知性",
+     prompt:`medium shot, ${NAMI}, beige shirt dress, holding wine glass, leaning against corridor wall, warm amber backlight, evening atmosphere, elegant knowing smile at viewer, cinematic lighting, anime illustration style, masterpiece quality`},
+    {n:17, file:"music-headphones.png", title:"雨天听歌", desc:"奶色毛衣+白耳机，窗边微闭眼享受",
+     prompt:`medium shot of ${NAMI}, sitting by a large window on a rainy afternoon, wearing an oversized cream cable-knit sweater, large white over-ear headphones on, eyes half-closed with a blissful content smile, raindrops on window glass, warm indoor lighting contrasting with gray rain outside, cozy atmospheric mood, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"🎭 Cosplay", tag:"Cosplay", items:[
+    {n:18, file:"cosplay-mai-sakurajima.png", title:"樱岛麻衣 Cos", desc:"校服+走廊+樱花，保持海蓝发",
+     prompt:`full body shot of ${NAMI}, cosplaying as a high school girl, wearing a navy blue school uniform blazer with red ribbon tie and plaid skirt, standing in a sunlit school corridor, leaning against the window with arms crossed, cool confident half-smile, golden afternoon light, cherry petals floating, showing shapely legs in black knee socks, anime illustration style, masterpiece quality`},
+    {n:19, file:"cosplay-hatsune-miku.png", title:"初音未来 Cos", desc:"双马尾+舞台装+荧光麦克风",
+     prompt:`full body shot of ${NAMI}, cosplaying with twin tails hairstyle using her navy blue hair, wearing a futuristic sleeveless gray and cyan top with cyan tie and black pleated mini skirt, arm warmers and thigh-high boots, holding a glowing cyan microphone, neon-lit concert stage with holographic effects, excited energetic smile, showing shapely legs, vibrant lighting, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"🏋️ 健身", tag:"健身", items:[
+    {n:20, file:"fitness-yoga.png", title:"瑜伽时光", desc:"深蓝运动背心+黑leggings，瑜伽垫宁静",
+     prompt:`medium shot of ${NAMI}, in a bright minimalist yoga studio, wearing a fitted navy blue sports tank top and black leggings, sitting in a relaxed yoga pose on a yoga mat, peaceful serene smile, soft natural daylight from large windows, water bottle beside her, healthy glow, anime illustration style, masterpiece quality`},
+    {n:21, file:"fitness-jogging.png", title:"晨跑活力", desc:"白运动帽衫+深蓝短裤，河边马尾飘扬",
+     prompt:`full body shot of ${NAMI}, jogging on a scenic riverside path in early morning, wearing a white sports crop hoodie and navy blue running shorts, hair tied in a high ponytail with orange flower hairpin still visible, bright energetic smile, morning golden sunlight, earbuds in ears, trees and river in bokeh background, showing shapely legs, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"🎮 生活兴趣", tag:"生活", items:[
+    {n:22, file:"gaming-couch.png", title:"游戏时间", desc:"深蓝帽衫+手柄，沙发上认真竞技",
+     prompt:`medium shot of ${NAMI}, sitting cross-legged on a cozy sofa, wearing a casual navy blue hoodie and shorts, holding a game controller with intense focused expression and slight competitive smirk, TV screen glowing, snacks on coffee table, colorful LED ambient lighting, relaxed cozy room, anime illustration style, masterpiece quality`},
+    {n:23, file:"citynight-rooftop.png", title:"城市夜景", desc:"黑皮衣+牛仔裤，天台霓虹灯下帅气",
+     prompt:`full body shot of ${NAMI}, standing on a city rooftop at night, wearing a fitted black leather jacket over a white graphic tee and dark jeans, leaning on railing, wind blowing her hair, mysterious confident smile, city skyline with glowing skyscrapers, neon lights reflecting in her eyes, cinematic blue-purple night atmosphere, showing shapely legs, anime illustration style, masterpiece quality`},
+  ]},
+  {cat:"💼 专业", tag:"专业", items:[
+    {n:24, file:"scene-office-secretary.png", title:"秘书模式", desc:"深灰西装+白衬衫+平板，落地窗城市",
+     prompt:`medium shot of ${NAMI}, standing in a modern glass office, wearing a fitted charcoal pencil skirt suit with white blouse, holding a tablet, composed professional smile, city skyline visible through floor-to-ceiling windows, cool blue-white office lighting, capable secretary vibe, anime illustration style, masterpiece quality`},
+  ]},
+];
+
+let globalN = 0;
+const content = document.getElementById('content');
+DATA.forEach(cat => {
+  const hdr = document.createElement('div');
+  hdr.className = 'cat-hdr';
+  hdr.innerHTML = `<h2>${cat.cat} <span class="cnt">${cat.items.length}</span></h2>`;
+  content.appendChild(hdr);
+
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+  cat.items.forEach((item, ii) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = (ii * 0.06) + 's';
+    card.innerHTML = `
+      <img src="${item.file}" alt="${item.title}" loading="lazy" onclick="openLB('${item.file}')">
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-num">${item.n}</span>
+          <span class="card-title">${item.title}</span>
+          <span class="card-tag tag-${cat.tag}">${cat.tag}</span>
+        </div>
+        <div class="card-desc">${item.desc}</div>
+        <div class="prompt-lbl">Prompt</div>
+        <div class="prompt-box">${item.prompt}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  content.appendChild(grid);
+});
+
+function openLB(src){document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lb').classList.remove('open');document.body.style.overflow=''}});
+</script>
+</body>
+</html>
