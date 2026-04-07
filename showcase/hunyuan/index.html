@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hikari — 腾讯混元 3.0 Demo | Agent Identity Studio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a12;--blue:#0088ff;--cyan:#00d4ff;--purple:#c44dff;--text:#e8e6f0;--dim:#888;--card:rgba(18,18,30,0.85);--r:16px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(0,136,255,0.08),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,212,255,0.06),transparent 60%);pointer-events:none;z-index:0}
+
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(10,10,18,0.92);backdrop-filter:blur(20px);padding:14px 28px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(0,136,255,0.15)}
+.top-nav a{color:var(--blue);text-decoration:none;font-size:0.9rem;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.top-nav a:hover{color:var(--cyan)}
+.top-nav .sep{color:rgba(255,255,255,0.15)}
+.top-nav .title{font-size:0.9rem;color:var(--dim)}
+
+.hero{text-align:center;padding:110px 24px 40px;position:relative;z-index:1}
+.hero h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{color:var(--dim);margin-top:10px;font-size:0.95rem;line-height:1.6}
+.hero .sub em{color:var(--blue);font-style:normal;font-weight:600}
+
+.ref-section{max-width:900px;margin:32px auto;padding:0 24px;position:relative;z-index:1}
+.ref-card{background:var(--card);border:1px solid rgba(0,136,255,0.1);border-radius:var(--r);padding:28px;display:flex;gap:24px;align-items:center}
+.ref-card img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:3px solid rgba(0,136,255,0.3)}
+.ref-info h3{font-size:1.3rem;margin-bottom:8px;color:var(--cyan)}
+.ref-info p{color:var(--dim);font-size:0.85rem;line-height:1.6}
+.ref-info .trait{display:inline-block;padding:3px 10px;border-radius:8px;font-size:0.7rem;margin:4px 4px 0 0;background:rgba(0,136,255,0.1);color:var(--blue);border:1px solid rgba(0,136,255,0.2)}
+
+.engine-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:10px;font-size:0.75rem;font-weight:700;background:linear-gradient(135deg,rgba(0,102,255,0.15),rgba(0,212,255,0.15));color:var(--cyan);border:1px solid rgba(0,150,255,0.3);margin-top:12px}
+
+.gallery{max-width:1200px;margin:48px auto;padding:0 24px;position:relative;z-index:1}
+.gallery h2{font-size:1.4rem;margin-bottom:24px;color:var(--text);text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,136,255,0.15)}
+.card img{width:100%;aspect-ratio:3/4;object-fit:cover;cursor:pointer}
+.card-info{padding:14px 16px}
+.card-tag{display:inline-block;padding:3px 10px;border-radius:8px;font-size:0.65rem;font-weight:600;margin-bottom:6px;background:rgba(0,136,255,0.12);color:var(--blue);border:1px solid rgba(0,136,255,0.25)}
+.card-title{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.card-desc{font-size:0.82rem;color:var(--dim);line-height:1.5}
+.prompt-toggle{font-size:0.65rem;color:var(--blue);cursor:pointer;margin-top:6px;opacity:0.7;transition:opacity 0.2s}
+.prompt-toggle:hover{opacity:1}
+.prompt-box{display:none;margin-top:6px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:8px 10px;font-size:0.65rem;font-family:Consolas,Monaco,monospace;color:rgba(255,255,255,0.5);line-height:1.5;word-break:break-all}
+.prompt-box.open{display:block}
+
+.stats{max-width:900px;margin:48px auto;padding:0 24px;position:relative;z-index:1}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat-card{background:var(--card);border:1px solid rgba(0,136,255,0.1);border-radius:var(--r);padding:20px;text-align:center}
+.stat-num{font-size:1.8rem;font-weight:800;color:var(--cyan)}
+.stat-label{font-size:0.75rem;color:var(--dim);margin-top:4px}
+
+.footer{text-align:center;padding:48px 24px;color:var(--dim);font-size:0.8rem;position:relative;z-index:1}
+.footer a{color:var(--blue);text-decoration:none}
+
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.92);justify-content:center;align-items:center;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:12px}
+
+@media(max-width:600px){
+  .ref-card{flex-direction:column;text-align:center}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../nami.html">← 返回主展示</a>
+  <span class="sep">|</span>
+  <span class="title">腾讯混元 3.0 引擎 Demo</span>
+</nav>
+
+<section class="hero">
+  <h1>Hikari — 混元 3.0 Demo</h1>
+  <p class="sub">
+    同一个 <em>Character Sheet</em>，换一个引擎<br>
+    <em>腾讯混元 HY-Image-V3.0</em> · 纯Prompt驱动 · 11个场景角色一致性验证
+  </p>
+</section>
+
+<section class="ref-section">
+  <div class="ref-card">
+    <img src="00-anime-ref.png" alt="Hikari Reference" onclick="openLB(this.src)">
+    <div class="ref-info">
+      <h3>Hikari · Character Sheet</h3>
+      <p>由 character-sheet.yaml 定义的角色身份，所有场景共享同一份。</p>
+      <div style="margin-top:8px">
+        <span class="trait">银白短发 + 紫色渐变</span>
+        <span class="trait">琥珀金瞳</span>
+        <span class="trait">金色星星耳钉</span>
+        <span class="trait">活力开朗</span>
+        <span class="trait">162cm 元气少女</span>
+      </div>
+      <div class="engine-badge">⚡ 腾讯混元 HY-Image-V3.0 · 80B参数 · ~5s/张</div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">11</div><div class="stat-label">不同场景</div></div>
+    <div class="stat-card"><div class="stat-num">~5s</div><div class="stat-label">平均生成速度</div></div>
+    <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">角色特征保持率</div></div>
+    <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">外部依赖*</div></div>
+  </div>
+  <p style="text-align:center;font-size:0.7rem;color:var(--dim);margin-top:8px">*gen.py 引擎纯Python标准库 + 腾讯云SDK</p>
+</section>
+
+<section class="gallery">
+  <h2>场景展示 · 纯Prompt驱动</h2>
+  <div class="grid" id="grid"></div>
+</section>
+
+<div class="footer">
+  <p><a href="../nami.html">← 主展示 (MiniMax引擎 · 娜美)</a> · Agent Identity Studio · 引擎可插拔架构</p>
+</div>
+
+<div class="lightbox" id="lb" onclick="this.classList.remove('open')"><img id="lbImg"></div>
+
+<script>
+function openLB(src){document.getElementById('lbImg').src=src;document.getElementById('lb').classList.add('open')}
+
+const SCENES = [
+  { file:"01-cafe-no-ref.png", title:"咖啡馆午后", tag:"日常", desc:"奶色毛衣捧脸，暖阳窗边",
+    prompt:"short silver-white hair with lavender tips, amber-golden eyes, star earring, oversized cream cable-knit sweater, cozy cafe by window, resting chin on hand, bright excited smile, warm golden afternoon sunlight, anime illustration style, cel shading, medium shot" },
+  { file:"04-library.png", title:"图书馆知性", tag:"日常", desc:"深蓝开衫+圆框眼镜，惊喜抬头",
+    prompt:"navy blue cardigan over white blouse, round glasses, grand old library, looking up from book with surprised pleased expression, warm reading lamp light, anime illustration style, cel shading, medium shot" },
+  { file:"09-cooking.png", title:"烘焙时光", tag:"日常", desc:"粉色围裙+面粉脸颊，举小蛋糕",
+    prompt:"light pink apron over white t-shirt, flour on cheek, bright modern kitchen, holding freshly decorated cupcake, proud delighted smile, warm kitchen lighting, anime illustration style, cel shading, medium shot" },
+  { file:"02-sakura-no-ref.png", title:"樱花漫步", tag:"浪漫", desc:"蓝裙+草帽+花瓣纷飞",
+    prompt:"light blue sundress with white cardigan, straw hat, cherry blossom park, petals floating in breeze, bright happy smile, warm spring sunlight, anime illustration style, cel shading, full body shot" },
+  { file:"05-rain-umbrella.png", title:"雨夜撑伞", tag:"浪漫", desc:"米色风衣+透明伞，霓虹雨夜",
+    prompt:"beige trench coat over navy dress, transparent umbrella, city street rainy evening, looking over shoulder with soft smile, neon reflections on wet pavement, anime illustration style, cel shading, full body shot" },
+  { file:"06-beach-sunset.png", title:"海边夕阳", tag:"浪漫", desc:"白裙赤脚踏浪，金色余晖",
+    prompt:"flowing white linen sundress, barefoot on sandy beach, brushing hair behind ear, peaceful content smile, orange-pink sunset on calm water, anime illustration style, cel shading, full body shot" },
+  { file:"03-night-no-ref.png", title:"城市夜景", tag:"帅气", desc:"黑皮衣+霓虹灯，天台",
+    prompt:"black leather jacket over white tee and dark jeans, city rooftop at night, wind blowing hair, mysterious confident smile, neon city lights, cinematic blue-purple atmosphere, anime illustration style, cel shading, full body shot" },
+  { file:"10-music.png", title:"雨天听歌", tag:"心动", desc:"奶色毛衣+白耳机，窗边沉醉",
+    prompt:"oversized cream cable-knit sweater, white over-ear headphones, large window rainy afternoon, eyes half-closed blissful smile, raindrops on window, warm indoor lighting, anime illustration style, cel shading, medium shot" },
+  { file:"08-christmas.png", title:"圣诞壁炉", tag:"心动", desc:"红毛衣+热可可，壁炉旁",
+    prompt:"fluffy oversized red knit sweater, sitting on rug by fireplace, holding mug of hot cocoa, soft grateful smile, Christmas tree fairy lights, warm firelight, anime illustration style, cel shading, medium shot" },
+  { file:"07-gaming.png", title:"游戏时间", tag:"生活", desc:"深蓝帽衫+手柄，LED灯光",
+    prompt:"oversized navy blue hoodie, sitting cross-legged on sofa, game controller, intense focused competitive smirk, colorful LED ambient lighting, TV screen glow, anime illustration style, cel shading, medium shot" },
+  { file:"11-cosplay-maid.png", title:"女仆Cos", tag:"Cosplay", desc:"黑白女仆装+比心+歪头杀",
+    prompt:"classic black and white maid outfit with frilly headband, cute maid cafe, making heart shape with hands, tilting head, cheerful wink with bright smile, pastel lighting, anime illustration style, cel shading, medium shot" },
+];
+
+const grid = document.getElementById('grid');
+SCENES.forEach(s => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <img src="${s.file}" alt="${s.title}" loading="lazy" onclick="openLB('${s.file}')">
+    <div class="card-info">
+      <span class="card-tag">${s.tag}</span>
+      <div class="card-title">${s.title}</div>
+      <div class="card-desc">${s.desc}</div>
+      <div class="prompt-toggle" onclick="event.stopPropagation();this.nextElementSibling.classList.toggle('open')">▶ Show Prompt</div>
+      <div class="prompt-box">${s.prompt}</div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
