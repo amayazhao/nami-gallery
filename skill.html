@@ -3,63 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Photoshoot Skill — 数字人形象生成技能</title>
+<title>Agent Identity Studio — 数字人形象养成技能 | Skills 大赛参赛作品</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a12;--purple:#c44dff;--pink:#ff6b9d;--cyan:#00d4ff;--gold:#f5a623;--text:#e8e6f0;--dim:#888;--card:rgba(18,18,30,0.85);--glass:rgba(255,255,255,0.03);--r:16px}
+:root{--bg:#0a0a12;--purple:#c44dff;--pink:#ff6b9d;--cyan:#00d4ff;--blue:#0088ff;--gold:#f5a623;--text:#e8e6f0;--dim:#888;--card:rgba(18,18,30,0.85);--r:16px}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(196,77,255,0.08),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(255,107,157,0.06),transparent 60%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(196,77,255,0.08),transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,136,255,0.06),transparent 60%);pointer-events:none;z-index:0}
 
-/* Hero */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;position:relative;z-index:1}
-.hero-avatar{width:140px;height:140px;border-radius:50%;border:3px solid rgba(196,77,255,0.4);box-shadow:0 0 40px rgba(196,77,255,0.2);object-fit:cover;margin-bottom:28px}
-.hero h1{font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em;line-height:1.2}
-.hero h1 small{display:block;font-size:1.1rem;font-weight:500;-webkit-text-fill-color:var(--dim);margin-top:8px;letter-spacing:0.04em}
-.hero .tagline{color:var(--dim);font-size:1.1rem;max-width:640px;line-height:1.7;margin-top:20px}
+.hero h1{font-size:2.8rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em;line-height:1.2}
+.hero h1 small{display:block;font-size:1rem;font-weight:500;-webkit-text-fill-color:var(--dim);margin-top:8px;letter-spacing:0.04em}
+.hero .tagline{color:var(--dim);font-size:1.05rem;max-width:680px;line-height:1.7;margin-top:20px}
 .hero .tagline em{color:var(--purple);font-style:normal;font-weight:600}
+.hero .tagline .hy{color:var(--blue);font-style:normal;font-weight:600}
 .badge-row{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;justify-content:center}
 .badge{padding:6px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;letter-spacing:0.03em}
 .badge-purple{background:rgba(196,77,255,0.12);border:1px solid rgba(196,77,255,0.3);color:var(--purple)}
+.badge-blue{background:rgba(0,136,255,0.12);border:1px solid rgba(0,136,255,0.3);color:var(--blue)}
 .badge-pink{background:rgba(255,107,157,0.12);border:1px solid rgba(255,107,157,0.3);color:var(--pink)}
 .badge-cyan{background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.3);color:var(--cyan)}
 
 /* Demo Cards */
-.demos{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;max-width:900px;margin:48px auto 0;padding:0 24px}
-.demo-card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all 0.35s cubic-bezier(.4,0,.2,1);text-decoration:none;color:var(--text);position:relative}
+.demos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:48px auto 0;padding:0 24px}
+.demo-card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all 0.35s;text-decoration:none;color:var(--text);position:relative}
 .demo-card:hover{transform:translateY(-6px);border-color:rgba(196,77,255,0.35);box-shadow:0 20px 60px rgba(196,77,255,0.12)}
-.demo-thumb{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s}
+.demo-card.hy:hover{border-color:rgba(0,136,255,0.35);box-shadow:0 20px 60px rgba(0,136,255,0.12)}
+.demo-thumb{width:100%;height:200px;object-fit:cover;display:block;transition:transform 0.5s}
 .demo-card:hover .demo-thumb{transform:scale(1.04)}
-.demo-body{padding:20px 22px 24px}
-.demo-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:6px}
-.demo-label.v1{color:var(--pink)}
-.demo-label.v2{color:var(--cyan)}
-.demo-title{font-size:1.3rem;font-weight:700;margin-bottom:8px}
-.demo-desc{font-size:0.88rem;color:var(--dim);line-height:1.6}
-.demo-arrow{position:absolute;bottom:22px;right:22px;width:36px;height:36px;border-radius:50%;background:rgba(196,77,255,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateX(-8px);transition:all 0.3s}
+.demo-body{padding:18px 20px 22px}
+.demo-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:6px}
+.demo-label.mm{color:var(--pink)}
+.demo-label.hy{color:var(--blue)}
+.demo-label.top10{color:var(--cyan)}
+.demo-title{font-size:1.15rem;font-weight:700;margin-bottom:6px}
+.demo-desc{font-size:0.82rem;color:var(--dim);line-height:1.5}
+.demo-stats{display:flex;gap:12px;margin-top:10px}
+.demo-stat{font-size:0.68rem;color:var(--dim);padding:2px 8px;border-radius:6px;background:rgba(255,255,255,0.04)}
+.demo-arrow{position:absolute;bottom:20px;right:20px;width:32px;height:32px;border-radius:50%;background:rgba(196,77,255,0.15);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateX(-8px);transition:all 0.3s}
 .demo-card:hover .demo-arrow{opacity:1;transform:translateX(0)}
-.demo-arrow svg{width:18px;height:18px;stroke:var(--purple);fill:none;stroke-width:2}
+.demo-card.hy .demo-arrow{background:rgba(0,136,255,0.15)}
+.demo-arrow svg{width:16px;height:16px;stroke:var(--purple);fill:none;stroke-width:2}
+.demo-card.hy .demo-arrow svg{stroke:var(--blue)}
 
 /* Features */
-.features{max-width:900px;margin:80px auto 0;padding:0 24px}
-.features h2{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:40px;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.feat-item{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:24px;transition:border-color 0.3s}
+.section{max-width:1000px;margin:80px auto 0;padding:0 24px}
+.section h2{font-size:1.6rem;font-weight:700;text-align:center;margin-bottom:36px;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.feat-item{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:22px;transition:border-color 0.3s}
 .feat-item:hover{border-color:rgba(196,77,255,0.2)}
-.feat-icon{font-size:1.6rem;margin-bottom:10px}
-.feat-name{font-size:1rem;font-weight:700;margin-bottom:6px}
-.feat-text{font-size:0.82rem;color:var(--dim);line-height:1.6}
+.feat-icon{font-size:1.5rem;margin-bottom:8px}
+.feat-name{font-size:0.95rem;font-weight:700;margin-bottom:5px}
+.feat-text{font-size:0.78rem;color:var(--dim);line-height:1.6}
+
+/* Engine Comparison */
+.engine-table{width:100%;border-collapse:collapse;margin-top:8px}
+.engine-table th,.engine-table td{padding:12px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.82rem}
+.engine-table th{color:var(--dim);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em}
+.engine-table td{color:var(--text)}
+.engine-table .engine-name{font-weight:700}
+.engine-table .mm{color:var(--pink)}
+.engine-table .hy{color:var(--blue)}
 
 /* Architecture */
-.arch{max-width:900px;margin:80px auto 0;padding:0 24px}
-.arch h2{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:28px;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.arch-diagram{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);padding:28px;font-family:'Cascadia Code','Fira Code',monospace;font-size:0.82rem;line-height:1.8;color:var(--dim);overflow-x:auto;white-space:pre}
+.arch-diagram{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);padding:24px;font-family:'Cascadia Code','Fira Code',monospace;font-size:0.78rem;line-height:1.8;color:var(--dim);overflow-x:auto;white-space:pre}
 .arch-diagram .hl{color:var(--purple);font-weight:600}
 .arch-diagram .hl2{color:var(--pink);font-weight:600}
 .arch-diagram .hl3{color:var(--cyan);font-weight:600}
+.arch-diagram .hl4{color:var(--blue);font-weight:600}
 
-/* Footer */
-.footer{text-align:center;padding:80px 24px 40px;color:var(--dim);font-size:0.82rem}
+.footer{text-align:center;padding:80px 24px 40px;color:var(--dim);font-size:0.8rem}
 .footer a{color:var(--purple);text-decoration:none}
 
 @media(max-width:768px){
@@ -72,99 +85,167 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <body>
 
 <div class="hero">
-  <img class="hero-avatar" src="showcase/avatar-main.png" alt="Nami">
-  <h1>AI Photoshoot Skill
-    <small>数字人形象生成技能 &middot; Skills 大赛参赛作品</small>
+  <h1>Agent Identity Studio
+    <small>数字人形象养成技能 &middot; Skills 大赛参赛作品</small>
   </h1>
   <p class="tagline">
-    基于 <em>Two-Layer Architecture</em> 的AI数字人形象生成系统<br>
-    Layer 1 定义"她是谁"（Character Sheet），Layer 2 定义"她在做什么"（Scene Card）<br>
-    实现跨场景的<em>角色一致性</em>和<em>风格可控性</em>
+    定义一次角色身份，<em>跨引擎、跨场景</em>无限生成，形象永远一致<br>
+    <em>Character Sheet</em>（身份层）+ <em>Scene Card</em>（场景层）两层分离架构<br>
+    支持 <em>MiniMax</em> 与 <span class="hy">腾讯混元 3.0</span> 双引擎可插拔切换
   </p>
   <div class="badge-row">
-    <span class="badge badge-purple">MiniMax image-01</span>
-    <span class="badge badge-pink">Pure Prompt — No LoRA</span>
-    <span class="badge badge-cyan">¥0.025/张</span>
+    <span class="badge badge-purple">引擎可插拔</span>
+    <span class="badge badge-pink">MiniMax image-01</span>
+    <span class="badge badge-blue">腾讯混元 HY-Image-V3.0</span>
+    <span class="badge badge-cyan">Pure Prompt &mdash; No LoRA</span>
   </div>
   <div class="demos">
     <a class="demo-card" href="showcase/nami.html">
-      <img class="demo-thumb" src="showcase/nami-bookstore.png" alt="Nami">
+      <img class="demo-thumb" src="showcase/scene-cafe-date.png" alt="Nami">
       <div class="demo-body">
-        <div class="demo-label v1">DEMO 1</div>
-        <div class="demo-title">娜美 — 数字人形象馆</div>
-        <div class="demo-desc">同一角色在12+场景下的形象展示：日常、约会、Cosplay、全身照，验证 Character Sheet 驱动的身份一致性。</div>
+        <div class="demo-label mm">DEMO 1 &mdash; MiniMax</div>
+        <div class="demo-title">娜美 &mdash; 22个场景</div>
+        <div class="demo-desc">同一角色在22+场景下的形象展示，验证 Character Sheet 驱动的身份一致性。</div>
+        <div class="demo-stats">
+          <span class="demo-stat">22张</span>
+          <span class="demo-stat">10种标签</span>
+          <span class="demo-stat">15-30s/张</span>
+        </div>
+      </div>
+      <div class="demo-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
+    </a>
+    <a class="demo-card hy" href="showcase/hunyuan/">
+      <img class="demo-thumb" src="showcase/hunyuan/01-cafe-no-ref.png" alt="Hikari">
+      <div class="demo-body">
+        <div class="demo-label hy">DEMO 2 &mdash; 腾讯混元 3.0</div>
+        <div class="demo-title">Hikari &mdash; 11个场景</div>
+        <div class="demo-desc">换一个角色+换一个引擎，同一套Skill同一个Character Sheet架构。</div>
+        <div class="demo-stats">
+          <span class="demo-stat">11张</span>
+          <span class="demo-stat">~5s/张</span>
+          <span class="demo-stat">80B参数</span>
+        </div>
       </div>
       <div class="demo-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
     </a>
     <a class="demo-card" href="sessions/2026-04-03-top10-anime/gallery.html">
       <img class="demo-thumb" src="sessions/2026-04-03-top10-anime/01-mai-sakurajima.png" alt="TOP10">
       <div class="demo-body">
-        <div class="demo-label v2">DEMO 2</div>
-        <div class="demo-title">TOP 10 角色一致性验证</div>
-        <div class="demo-desc">10个经典日漫角色 &times; 4张图（形象照+3场景），纯视觉特征驱动、无角色名，验证 prompt 工程的泛化能力。</div>
+        <div class="demo-label top10">DEMO 3 &mdash; 泛化验证</div>
+        <div class="demo-title">TOP 10 角色一致性</div>
+        <div class="demo-desc">10个经典日漫角色 &times; 4张图，纯视觉特征驱动，验证 prompt 工程的泛化能力。</div>
+        <div class="demo-stats">
+          <span class="demo-stat">40张</span>
+          <span class="demo-stat">10种角色</span>
+          <span class="demo-stat">MiniMax</span>
+        </div>
       </div>
       <div class="demo-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div>
     </a>
   </div>
 </div>
 
-<div class="features">
+<div class="section">
   <h2>核心能力</h2>
   <div class="feat-grid">
     <div class="feat-item">
       <div class="feat-icon">🧬</div>
-      <div class="feat-name">Two-Layer Architecture</div>
+      <div class="feat-name">Two-Layer 架构</div>
       <div class="feat-text">Character Sheet（身份层）+ Scene Card（场景层）分离。身份特征跨场景锁定，场景随意切换不走形。</div>
     </div>
     <div class="feat-item">
+      <div class="feat-icon">🔌</div>
+      <div class="feat-name">引擎可插拔</div>
+      <div class="feat-text">同一套代码支持 MiniMax 和腾讯混元 3.0。环境变量切换，上层零改动。未来可扩展更多引擎。</div>
+    </div>
+    <div class="feat-item">
       <div class="feat-icon">🎯</div>
-      <div class="feat-name">Pure Prompt Engineering</div>
-      <div class="feat-text">不依赖 LoRA / DreamBooth / 微调模型。纯 prompt + reference image 双重锚定，零训练成本。</div>
+      <div class="feat-name">Pure Prompt</div>
+      <div class="feat-text">不依赖 LoRA / DreamBooth / 微调。纯 Prompt + 可选参考图，零训练成本，即开即用。</div>
     </div>
     <div class="feat-item">
       <div class="feat-icon">🛡️</div>
-      <div class="feat-name">审核安全策略</div>
-      <div class="feat-text">积累了完整的审核绕过经验库。"不说身体说衣服" — 用服饰描述替代身体描述，安全且效果好。</div>
+      <div class="feat-name">审核安全</div>
+      <div class="feat-text">"不说身体说衣服" — 内置安全词库 + 自动降级重试。被拦截后自动调整 prompt 重试。</div>
     </div>
     <div class="feat-item">
       <div class="feat-icon">📐</div>
-      <div class="feat-name">Prompt 经验库</div>
-      <div class="feat-text">眼神三要素、身材安全描述、成熟感调控公式、面料升级策略 — 系统化的 prompt engineering 知识沉淀。</div>
+      <div class="feat-name">身材分级</div>
+      <div class="feat-text">特写/半身/全身自动适配不同粒度的身体描述。宽松衣服自动补偿。构图决定描述深度。</div>
     </div>
     <div class="feat-item">
       <div class="feat-icon">🎭</div>
       <div class="feat-name">Cosplay 模式</div>
-      <div class="feat-text">角色 Cos 其他角色时，保持核心身份特征（发色、眼色、发饰）不变，只换服装场景。</div>
+      <div class="feat-text">换装不换人。角色核心特征（发色、眼色、标志配饰）在 Cosplay 场景下仍然保持。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-icon">📄</div>
+      <div class="feat-name">YAML 配置化</div>
+      <div class="feat-text">角色定义完全在 character-sheet.yaml 中，gen.py 是稳定引擎。代码与配置分离。</div>
     </div>
     <div class="feat-item">
       <div class="feat-icon">💰</div>
-      <div class="feat-name">极低成本</div>
-      <div class="feat-text">MiniMax image-01 仅 ¥0.025/张。40张一致性验证总成本 &lt; ¥1.5。普通用户也能用得起。</div>
+      <div class="feat-name">成本极低</div>
+      <div class="feat-text">MiniMax ¥0.025/张（40张/元）。混元 ¥0.20/张（5张/元）。零外部依赖*，纯 Python 标准库。</div>
     </div>
   </div>
 </div>
 
-<div class="arch">
+<div class="section">
+  <h2>双引擎对比</h2>
+  <div style="background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--r);overflow:hidden">
+    <table class="engine-table">
+      <thead><tr><th></th><th>MiniMax image-01</th><th>腾讯混元 HY-Image-V3.0</th></tr></thead>
+      <tbody>
+        <tr><td>调用模式</td><td>同步（一次请求）</td><td>异步（提交+轮询）</td></tr>
+        <tr><td>速度</td><td>15-30s</td><td><strong>4-7s</strong></td></tr>
+        <tr><td>单张成本</td><td><strong>¥0.025</strong></td><td>¥0.20</td></tr>
+        <tr><td>参考图</td><td>1张 (data:URI / URL)</td><td>最多3张 (Base64 / URL)</td></tr>
+        <tr><td>模型参数</td><td>未公开</td><td>80B（开源最大）</td></tr>
+        <tr><td>画风</td><td>纯二次元</td><td>二次元/半写实可调</td></tr>
+        <tr><td>中文理解</td><td>一般</td><td><strong>优秀</strong>（原生多模态）</td></tr>
+        <tr><td>依赖</td><td>无（纯stdlib）</td><td>腾讯云SDK</td></tr>
+        <tr><td>切换方式</td><td>默认</td><td>IDENTITY_STUDIO_ENGINE=hunyuan</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
   <h2>系统架构</h2>
-  <div class="arch-diagram"><span class="hl">┌─────────────────────────────────────────────────┐</span>
-<span class="hl">│  Layer 0 — Engine</span> (API / Audit / Retry)         <span class="hl">│</span>
-<span class="hl">│</span>  MiniMax image-01, ¥0.025/张, 18-100s/张        <span class="hl">│</span>
-<span class="hl">├─────────────────────────────────────────────────┤</span>
-<span class="hl2">│  Layer 1 — Character Sheet</span> (固定不变)            <span class="hl">│</span>
-<span class="hl">│</span>  五官 + 身材 + 气质 + 画风 + 参考图              <span class="hl">│</span>
-<span class="hl">│</span>  → render() → 固定 prompt 段                     <span class="hl">│</span>
-<span class="hl">├─────────────────────────────────────────────────┤</span>
-<span class="hl3">│  Layer 2 — Scene Card</span> (每次不同)                 <span class="hl">│</span>
-<span class="hl">│</span>  场景 + 穿搭 + 动作 + 光影 + 构图               <span class="hl">│</span>
-<span class="hl">│</span>  → render() → 可变 prompt 段                     <span class="hl">│</span>
-<span class="hl">├─────────────────────────────────────────────────┤</span>
-<span class="hl">│  Prompt Assembly</span>                                 <span class="hl">│</span>
-<span class="hl">│</span>  final = <span class="hl2">character_prompt</span> + expression + <span class="hl3">scene</span>   <span class="hl">│</span>
-<span class="hl">└─────────────────────────────────────────────────┘</span></div>
+  <div class="arch-diagram"><span class="hl">┌─────────────────────────────────────────────────────┐</span>
+<span class="hl">│  Layer 0 — Engine</span> (可插拔)                           <span class="hl">│</span>
+<span class="hl">│</span>  ├─ <span class="hl2">MiniMax image-01</span>     ¥0.025/张  15-30s       <span class="hl">│</span>
+<span class="hl">│</span>  └─ <span class="hl4">Hunyuan HY-Image-V3.0</span> ¥0.20/张  4-7s         <span class="hl">│</span>
+<span class="hl">├─────────────────────────────────────────────────────┤</span>
+<span class="hl2">│  Layer 1 — Character Sheet</span> (YAML, 固定不变)           <span class="hl">│</span>
+<span class="hl">│</span>  五官 + 身材 + 气质 + 画风 + 参考图                    <span class="hl">│</span>
+<span class="hl">│</span>  → render(composition) → 固定 prompt 段               <span class="hl">│</span>
+<span class="hl">├─────────────────────────────────────────────────────┤</span>
+<span class="hl3">│  Layer 2 — Scene Card</span> (每次不同)                      <span class="hl">│</span>
+<span class="hl">│</span>  场景 + 穿搭 + 动作 + 光影 + 构图                     <span class="hl">│</span>
+<span class="hl">│</span>  → render() → 可变 prompt 段                          <span class="hl">│</span>
+<span class="hl">├─────────────────────────────────────────────────────┤</span>
+<span class="hl">│  Prompt Assembly</span>                                      <span class="hl">│</span>
+<span class="hl">│</span>  final = <span class="hl2">character</span> + expression + <span class="hl3">scene</span>               <span class="hl">│</span>
+<span class="hl">│</span>  → Engine.<span class="hl2">generate()</span> → 自动分发到对应后端              <span class="hl">│</span>
+<span class="hl">└─────────────────────────────────────────────────────┘</span></div>
+</div>
+
+<div class="section" style="margin-top:60px">
+  <h2>技术规格</h2>
+  <div class="feat-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+    <div class="feat-item" style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--purple)">33+</div><div class="feat-text">总展示场景</div></div>
+    <div class="feat-item" style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--pink)">2</div><div class="feat-text">生成引擎</div></div>
+    <div class="feat-item" style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--cyan)">19</div><div class="feat-text">YAML可配字段</div></div>
+    <div class="feat-item" style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--blue)">0</div><div class="feat-text">外部依赖*</div></div>
+    <div class="feat-item" style="text-align:center"><div style="font-size:2rem;font-weight:800;color:var(--gold)">>95%</div><div class="feat-text">生成成功率</div></div>
+  </div>
+  <p style="text-align:center;font-size:0.7rem;color:var(--dim);margin-top:8px">*MiniMax引擎零依赖（纯stdlib），混元引擎需腾讯云SDK</p>
 </div>
 
 <div class="footer">
-  <p>AI Photoshoot Skill &middot; Powered by MiniMax image-01 + CodeBuddy Agent</p>
+  <p>Agent Identity Studio &middot; 引擎可插拔 &middot; MiniMax + 腾讯混元 3.0 &middot; CodeBuddy Agent</p>
   <p style="margin-top:8px"><a href="https://github.com/amayazhao/nami-gallery">GitHub</a></p>
 </div>
 
